@@ -1345,15 +1345,39 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closePopup()
 
 function submitForm(e) {
   e.preventDefault();
-  // Show success
-  document.getElementById('offerForm').querySelectorAll('.pf-group, .pf-row, .pf-divider, .pf-checkbox-label, .pf-submit').forEach(el => el.style.display = 'none');
+
+  const fname   = document.getElementById('pf-fname').value.trim();
+  const lname   = document.getElementById('pf-lname').value.trim();
+  const email   = document.getElementById('pf-email').value.trim();
+  const phone   = document.getElementById('pf-phone').value.trim();
+  const aptType = document.getElementById('pf-type');
+  const aptText = aptType.options[aptType.selectedIndex].text;
+  const msg     = document.getElementById('pf-msg').value.trim();
+
+  const subject = encodeURIComponent('Cerere oferta New Point 2 - ' + aptText);
+  const body = encodeURIComponent(
+    'Nume: ' + fname + ' ' + lname + '\n' +
+    'Email: ' + email + '\n' +
+    'Telefon: ' + phone + '\n' +
+    'Tip apartament: ' + aptText + '\n' +
+    (msg ? 'Mesaj: ' + msg + '\n' : '') +
+    '\n---\nTrimis din: New Point 2 Landing Page'
+  );
+
+  // Open mailto — delivers directly to sales@new-point.ro
+  window.location.href = 'mailto:sales@new-point.ro?subject=' + subject + '&body=' + body;
+
+  // Show success screen
+  const formEls = document.getElementById('offerForm')
+    .querySelectorAll('.pf-group, .pf-row, .pf-divider, .pf-checkbox-label, .pf-submit');
+  formEls.forEach(el => el.style.display = 'none');
   document.getElementById('pf-success').style.display = 'block';
-  // Auto-close after 3s
+
+  // Auto-close + reset
   setTimeout(closePopup, 3500);
-  // Reset after close
   setTimeout(() => {
     document.getElementById('offerForm').reset();
-    document.getElementById('offerForm').querySelectorAll('.pf-group, .pf-row, .pf-divider, .pf-checkbox-label, .pf-submit').forEach(el => el.style.display = '');
+    formEls.forEach(el => el.style.display = '');
     document.getElementById('pf-success').style.display = 'none';
   }, 4000);
 }
