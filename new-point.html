@@ -500,6 +500,87 @@ footer{
   }
   .stages-note .note-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
 
+
+  /* CONSTRUCTION MEDIA */
+  .construction-media {
+    margin-top: 64px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+  .cm-video-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--dark3);
+    border: 1px solid rgba(184,146,74,0.15);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+  }
+  .cm-video-frame iframe {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    border: none;
+  }
+  .cm-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .cm-gallery .cm-photo:first-child {
+    grid-column: 1 / -1;
+  }
+  .cm-photo {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    aspect-ratio: 16/10;
+    display: block;
+    cursor: pointer;
+    border: 1px solid rgba(184,146,74,0.1);
+  }
+  .cm-gallery .cm-photo:first-child { aspect-ratio: 16/8; }
+  .cm-photo img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    filter: brightness(0.85) saturate(0.9);
+    transition: transform 0.6s ease, filter 0.4s ease;
+  }
+  .cm-photo:hover img {
+    transform: scale(1.06);
+    filter: brightness(1) saturate(1.1);
+  }
+  .cm-photo-overlay {
+    position: absolute; inset: 0;
+    background: rgba(14,13,11,0);
+    display: flex; align-items: flex-end;
+    padding: 14px 16px;
+    transition: background 0.3s;
+    font-size: 11px; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--gold);
+    opacity: 0;
+    transition: all 0.3s;
+  }
+  .cm-photo:hover .cm-photo-overlay {
+    background: rgba(14,13,11,0.4);
+    opacity: 1;
+  }
+  .cm-source {
+    margin-top: 10px;
+    font-size: 11px; color: var(--text-dim);
+    letter-spacing: 1px;
+  }
+  .cm-source a { color: var(--gold); text-decoration: none; }
+  .cm-source a:hover { color: var(--gold-light); }
+
+  @media (max-width: 900px) {
+    .construction-media { grid-template-columns: 1fr; gap: 32px; }
+    .cm-gallery { grid-template-columns: 1fr; }
+    .cm-gallery .cm-photo:first-child { grid-column: 1; }
+  }
+
 </style>
 </head>
 <body>
@@ -853,6 +934,71 @@ footer{
       </div>
 
     </div><!-- /stages-timeline -->
+
+    <!-- MEDIA: Gallery + Video -->
+    <div class="construction-media reveal">
+
+      <!-- VIDEO -->
+      <div class="cm-video-wrap">
+        <div class="eyebrow" style="margin-bottom:20px;">
+          <span data-ro>Filmare Șantier</span>
+          <span data-en>Construction Footage</span>
+        </div>
+        <div class="cm-video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/8buSi6oYYIQ?rel=0&modestbranding=1"
+            title="New Point - Stadiu Constructie"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+
+      <!-- PHOTO GALLERY -->
+      <div class="cm-gallery-wrap">
+        <div class="eyebrow" style="margin-bottom:20px;">
+          <span data-ro>Foto Șantier</span>
+          <span data-en>Site Photos</span>
+        </div>
+        <div class="cm-gallery">
+          <a href="https://new-point.ro/wp-content/uploads/2024/10/stadiu1.webp" target="_blank" class="cm-photo">
+            <img src="https://new-point.ro/wp-content/uploads/2024/10/stadiu1.webp"
+                 alt="Stadiu constructie New Point 1"
+                 loading="lazy">
+            <div class="cm-photo-overlay">
+              <span data-ro>Vezi foto →</span>
+              <span data-en>View photo →</span>
+            </div>
+          </a>
+          <a href="https://new-point.ro/wp-content/uploads/2024/10/stadiu2.webp" target="_blank" class="cm-photo">
+            <img src="https://new-point.ro/wp-content/uploads/2024/10/stadiu2.webp"
+                 alt="Stadiu constructie New Point 2"
+                 loading="lazy">
+            <div class="cm-photo-overlay">
+              <span data-ro>Vezi foto →</span>
+              <span data-en>View photo →</span>
+            </div>
+          </a>
+          <a href="https://new-point.ro/wp-content/uploads/2024/10/stadiu3.webp" target="_blank" class="cm-photo">
+            <img src="https://new-point.ro/wp-content/uploads/2024/10/stadiu3.webp"
+                 alt="Stadiu constructie New Point 3"
+                 loading="lazy">
+            <div class="cm-photo-overlay">
+              <span data-ro>Vezi foto →</span>
+              <span data-en>View photo →</span>
+            </div>
+          </a>
+        </div>
+        <p class="cm-source">
+          <span data-ro>Sursa: </span>
+          <span data-en>Source: </span>
+          <a href="https://new-point.ro" target="_blank">new-point.ro</a>
+        </p>
+      </div>
+
+    </div><!-- /construction-media -->
+
 
     <div class="stages-note reveal">
       <span class="note-icon">ℹ️</span>
