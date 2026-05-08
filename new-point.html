@@ -379,24 +379,50 @@ footer{
   .mission-vision{grid-template-columns:1fr;}
   .hero-scroll{display:none;}
 }
+
+  /* LANG */
+  .lang-btn {
+    position:fixed;top:24px;right:32px;z-index:1000;
+    display:flex;gap:4px;
+    background:rgba(14,13,11,0.85);
+    border:1px solid rgba(184,146,74,0.3);
+    border-radius:40px;padding:4px;
+    backdrop-filter:blur(12px);
+  }
+  .lang-btn button {
+    background:none;border:none;cursor:pointer;
+    font-family:'DM Sans',sans-serif;
+    font-size:11px;font-weight:500;letter-spacing:1.5px;
+    color:var(--text-dim);padding:6px 14px;border-radius:30px;
+    transition:all 0.3s;text-transform:uppercase;
+  }
+  .lang-btn button.active { background:var(--gold);color:var(--dark); }
+  [data-ro] { display:none; }
+  body.ro [data-en] { display:none; }
+  body.ro [data-ro] { display:revert; }
 </style>
 </head>
 <body>
 
 <!-- NAV -->
+
+<div class="lang-btn">
+  <button onclick="setLang('ro')" id="btn-ro" class="active">RO</button>
+  <button onclick="setLang('en')" id="btn-en">EN</button>
+</div>
 <nav id="navbar">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">
       <img src="LOGO_PLACEHOLDER" alt="Shikun & Binui" style="filter:drop-shadow(0 2px 6px rgba(0,0,0,0.5));">
     </a>
     <ul class="nav-links">
-      <li><a href="#shikun">Shikun & Binui</a></li>
-      <li><a href="#about-np">Despre Proiect</a></li>
-      <li><a href="#prices">Prețuri</a></li>
-      <li><a href="#apartments">Apartamente</a></li>
-      <li><a href="#location">Locație</a></li>
+      <li><a href="#shikun"><span data-ro>Shikun &amp; Binui</span><span data-en>Shikun &amp; Binui</span></a></li>
+      <li><a href="#about-np"><span data-ro><span data-ro>Despre Proiect</span><span data-en>About Project</span></span><span data-en>About Project</span></a></li>
+      <li><a href="#prices"><span data-ro>Prețuri</span><span data-en>Prices</span></a></li>
+      <li><a href="#apartments"><span data-ro>Apartamente</span><span data-en>Apartments</span></a></li>
+      <li><a href="#location"><span data-ro><span data-ro>Locație</span><span data-en>Location</span></span><span data-en>Location</span></a></li>
     </ul>
-    <a href="https://new-point.ro/#contact" target="_blank" class="nav-cta">Cere Ofertă</a>
+    <a href="https://new-point.ro/#contact" target="_blank" class="nav-cta"><span data-ro>Cere Ofertă</span><span data-en>Request Offer</span></a>
   </div>
 </nav>
 
@@ -404,27 +430,27 @@ footer{
 <section id="hero">
   <div class="hero-bg" id="heroBg"></div>
   <div class="mw hero-content">
-    <div class="hero-presenter">Shikun &amp; Binui prezintă</div>
+    <div class="hero-presenter"><span data-ro>Shikun &amp; Binui prezintă</span><span data-en>Shikun &amp; Binui presents</span></div>
     <h1 class="hero-title">New <em>Point</em></h1>
-    <p class="hero-sub">Pipera, București · Apartamente de lux cu bucătărie inclusă</p>
+    <p class="hero-sub"><span data-ro>Pipera, București · Apartamente de lux cu bucătărie inclusă</span><span data-en>Pipera, Bucharest · Luxury apartments with included kitchen</span></p>
     <div class="hero-pills">
-      <div class="pill">Studio · 2 · 3 camere · Penthouse</div>
-      <div class="pill">De la 115.000 € + TVA</div>
-      <div class="pill">10.000 € avans</div>
-      <div class="pill">Bucătărie complet utilată</div>
+      <div class="pill"><span data-ro>Studio · 2 · 3 camere · Penthouse</span><span data-en>Studio · 2 · 3 rooms · Penthouse</span></div>
+      <div class="pill"><span data-ro>De la 115.000 € + TVA</span><span data-en>From €115,000 + VAT</span></div>
+      <div class="pill"><span data-ro>10.000 € avans</span><span data-en>€10,000 down payment</span></div>
+      <div class="pill"><span data-ro>Bucătărie complet utilată</span><span data-en>Fully equipped kitchen</span></div>
     </div>
     <div class="hero-btns">
-      <a href="#prices" class="btn-gold">Vezi Prețuri</a>
-      <a href="https://new-point.ro/#contact" target="_blank" class="btn-outline">Cere Ofertă Personalizată</a>
+      <a href="#prices" class="btn-gold"><span data-ro>Vezi Prețuri</span><span data-en>See Prices</span></a>
+      <a href="https://new-point.ro/#contact" target="_blank" class="btn-outline"><span data-ro>Cere Ofertă Personalizată</span><span data-en>Request Personalized Offer</span></a>
     </div>
   </div>
-  <div class="hero-scroll">Scroll</div>
+  <div class="hero-scroll"><span data-ro>Scroll</span><span data-en>Scroll</span></div>
 </section>
 
 <!-- PROMO BANNER -->
 <div id="promo">
   <div class="mw">
-    <p class="promo-text">🎁 <strong>Cadou la cumpărare:</strong> Bucătărie complet mobilată și utilată · Doar <strong>10.000 € avans</strong> · Ofertă limitată</p>
+    <p class="promo-text">🎁 <span data-ro><strong>Cadou la cumpărare:</strong> Bucătărie complet mobilată și utilată · Doar <strong><span data-ro>10.000 € avans</span><span data-en>€10,000 down payment</span></strong> · Ofertă limitată</span><span data-en><strong>Gift with purchase:</strong> Fully equipped kitchen included · Only <strong>€10,000 down payment</strong> · Limited offer</span></p>
   </div>
 </div>
 
@@ -432,11 +458,11 @@ footer{
 <div class="stats-strip">
   <div class="mw">
     <div class="stats-grid">
-      <div class="stat reveal"><div class="stat-n">2008</div><div class="stat-l">Activi în România</div></div>
-      <div class="stat reveal"><div class="stat-n">4</div><div class="stat-l">Tipuri Apartamente</div></div>
-      <div class="stat reveal"><div class="stat-n">44–380<span style="font-size:22px">m²</span></div><div class="stat-l">Suprafețe</div></div>
-      <div class="stat reveal"><div class="stat-n">115k€</div><div class="stat-l">Preț de la</div></div>
-      <div class="stat reveal"><div class="stat-n">10k€</div><div class="stat-l">Avans Minim</div></div>
+      <div class="stat reveal"><div class="stat-n">2008</div><div class="stat-l"><span data-ro>Activi în România</span><span data-en>Active in Romania</span></div></div>
+      <div class="stat reveal"><div class="stat-n">4</div><div class="stat-l"><span data-ro>Tipuri Apartamente</span><span data-en>Apt. Types</span></div></div>
+      <div class="stat reveal"><div class="stat-n">44–380<span style="font-size:22px">m²</span></div><div class="stat-l"><span data-ro>Suprafețe</span><span data-en>Sizes</span></div></div>
+      <div class="stat reveal"><div class="stat-n">115k€</div><div class="stat-l"><span data-ro>Preț de la</span><span data-en>From</span></div></div>
+      <div class="stat reveal"><div class="stat-n">10k€</div><div class="stat-l"><span data-ro>Avans Minim</span><span data-en>Min. Down</span></div></div>
     </div>
   </div>
 </div>
@@ -446,35 +472,35 @@ footer{
   <div class="mw">
     <div class="sb-grid reveal">
       <div>
-        <div class="eyebrow">Garantul tău</div>
-        <h2 class="section-title">Shikun &amp; Binui —<br>100 de ani de<br><em>încredere globală</em></h2>
+        <div class="eyebrow"><span data-ro>Garantul tău</span><span data-en>Your Guarantee</span></div>
+        <h2 class="section-title"><span data-ro>Shikun &amp; Binui —<br>100 de ani de<br><em>încredere globală</em></span><span data-en>Shikun &amp; Binui —<br>100 years of<br><em>global trust</em></span></h2>
         <p class="body-text" style="margin-bottom:28px;">
-          Shikun &amp; Binui este cel mai important grup israelian de infrastructură și imobiliare — o corporație globală cu aproape un secol de activitate. Listată la Bursa de Valori din Tel Aviv, compania operează pe 4 continente și în peste 20 de țări, cu mii de proiecte finalizate și o reputație impecabilă construită pe transparență și excelență.
+          <span data-ro>Shikun &amp; Binui este cel mai important grup israelian de infrastructură și imobiliare — o corporație globală cu aproape un secol de activitate. Listată la Bursa de Valori din Tel Aviv, compania operează pe 4 continente și în peste 20 de țări, cu mii de proiecte finalizate și o reputație impecabilă construită pe transparență și excelență.</span><span data-en>Shikun &amp; Binui is Israel's leading infrastructure and real estate conglomerate — a global corporation with nearly a century of activity. Listed on the Tel Aviv Stock Exchange, the group operates across 4 continents and 20+ countries, with thousands of completed projects and an impeccable reputation built on transparency and excellence.</span>
         </p>
         <p class="body-text">
-          În spatele proiectului New Point stă o forță financiară și tehnică de talie mondială — o garanție că ceea ce se promite se și livrează.
+          <span data-ro>În spatele proiectului New Point stă o forță financiară și tehnică de talie mondială — o garanție că ceea ce se promite se și livrează.</span><span data-en>Behind New Point stands a world-class financial and technical powerhouse — a guarantee that what is promised is delivered.</span>
         </p>
         <div class="sb-badges">
           <div class="sb-badge">
             <div class="sb-badge-icon">📈</div>
-            <div class="sb-badge-text"><strong>Companie Publică · Tel Aviv Stock Exchange</strong>Transparență financiară totală, raportări publice și guvernanță corporativă de cel mai înalt nivel.</div>
+            <div class="sb-badge-text"><strong><span data-ro>Companie Publică · Tel Aviv Stock Exchange</span><span data-en>Public Company · Tel Aviv Stock Exchange</span></strong><span data-ro>Transparență financiară totală, raportări publice și guvernanță corporativă de cel mai înalt nivel.</span><span data-en>Full financial transparency, public reporting and corporate governance of the highest standard.</span></div>
           </div>
           <div class="sb-badge">
             <div class="sb-badge-icon">🌍</div>
-            <div class="sb-badge-text"><strong>Prezență pe 4 Continente</strong>Proiecte în Africa, America, Europa și Asia-Pacific — standarde internaționale la fiecare șantier.</div>
+            <div class="sb-badge-text"><strong><span data-ro>Prezență pe 4 Continente</span><span data-en>Presence on 4 Continents</span></strong><span data-ro>Proiecte în Africa, America, Europa și Asia-Pacific — standarde internaționale la fiecare șantier.</span><span data-en>Projects in Africa, the Americas, Europe and Asia-Pacific — international standards at every site.</span></div>
           </div>
           <div class="sb-badge">
             <div class="sb-badge-icon">🏗️</div>
-            <div class="sb-badge-text"><strong>Infrastructură · Imobiliare · Energie</strong>Autostrăzi, căi ferate, complexe rezidențiale și centrale energetice — diversificare care garantează stabilitate.</div>
+            <div class="sb-badge-text"><strong><span data-ro>Infrastructură · Imobiliare · Energie</span><span data-en>Infrastructure · Real Estate · Energy</span></strong><span data-ro>Autostrăzi, căi ferate, complexe rezidențiale și centrale energetice — diversificare care garantează stabilitate.</span><span data-en>Highways, railways, residential complexes and power plants — diversification that guarantees stability.</span></div>
           </div>
         </div>
       </div>
       <div class="sb-visual">
-        <div class="sb-stat-box reveal"><div class="sb-stat-n">1924</div><div class="sb-stat-l">Fondată</div></div>
+        <div class="sb-stat-box reveal"><div class="sb-stat-n">1924</div><div class="sb-stat-l"><span data-ro>Fondată</span><span data-en>Founded</span></div></div>
         <div class="sb-stat-box reveal"><div class="sb-stat-n">20<span style="font-size:20px">+</span></div><div class="sb-stat-l">Țări</div></div>
         <div class="sb-stat-box reveal"><div class="sb-stat-n">4</div><div class="sb-stat-l">Continente</div></div>
-        <div class="sb-stat-box reveal"><div class="sb-stat-n">100<span style="font-size:20px">+</span></div><div class="sb-stat-l">Ani Expertiză</div></div>
-        <div class="sb-stat-box reveal" style="grid-column:1/-1;"><div class="sb-stat-n" style="font-size:28px;">Tel Aviv<br>Stock Exchange</div><div class="sb-stat-l" style="margin-top:4px;">Companie Listată Public</div></div>
+        <div class="sb-stat-box reveal"><div class="sb-stat-n">100<span style="font-size:20px">+</span></div><div class="sb-stat-l"><span data-ro>Ani Expertiză</span><span data-en>Years Expertise</span></div></div>
+        <div class="sb-stat-box reveal" style="grid-column:1/-1;"><div class="sb-stat-n" style="font-size:28px;">Tel Aviv<br>Stock Exchange</div><div class="sb-stat-l" style="margin-top:4px;"><span data-ro>Companie Listată Public</span><span data-en>Publicly Listed Company</span></div></div>
       </div>
     </div>
   </div>
@@ -490,22 +516,22 @@ footer{
         </div>
       </div>
       <div class="reveal">
-        <div class="eyebrow">Despre Proiect</div>
-        <h2 class="section-title">New Point 2<br>Residence</h2>
+        <div class="eyebrow"><span data-ro><span data-ro>Despre Proiect</span><span data-en>About Project</span></span><span data-en>About Project</span></div>
+        <h2 class="section-title"><span data-ro>New Point 2<br>Residence</span><span data-en>New Point 2<br>Residence</span></h2>
         <p class="body-text" style="margin-bottom:24px;">
-          New Point 2 este un ansamblu rezidențial modern și elegant din Pipera — una dintre cele mai dinamice zone de dezvoltare ale Bucureștiului. Proiectat cu atenție la detalii, cu spații generoase și compartimentări eficiente, completat de finisaje premium și dotări de lux.
+          <span data-ro>New Point 2 este un ansamblu rezidențial modern și elegant din Pipera — una dintre cele mai dinamice zone de dezvoltare ale Bucureștiului. Proiectat cu atenție la detalii, cu spații generoase și compartimentări eficiente, completat de finisaje premium și dotări de lux.</span><span data-en>New Point 2 is a modern and elegant residential complex in Pipera — one of Bucharest's most dynamic development hubs. Designed with attention to detail, generous spaces and efficient layouts, completed with premium finishes and luxury amenities.</span>
         </p>
         <p class="body-text">
-          Poziționat strategic cu acces rapid la aeroport, Parcul Herăstrău, centre comerciale de top și școli de renume — totul accesibil prin transportul în comun chiar din fața complexului.
+          <span data-ro>Poziționat strategic cu acces rapid la aeroport, Parcul Herăstrău, centre comerciale de top și școli de renume — totul accesibil prin transportul în comun chiar din fața complexului.</span><span data-en>Strategically positioned with quick access to the airport, Herăstrău Park, top shopping centres and prestigious schools — all accessible by public transport right outside the complex.</span>
         </p>
         <div class="mission-vision">
           <div class="mv-box">
-            <div class="mv-title">Misiunea Noastră</div>
-            <div class="mv-text">Apartamente moderne, proiectate cu simț de răspundere și atenție la detalii, în deplină simbioză cu dorințele familiei moderne.</div>
+            <div class="mv-title"><span data-ro>Misiunea Noastră</span><span data-en>Our Mission</span></div>
+            <div class="mv-text"><span data-ro>Apartamente moderne, proiectate cu simț de răspundere și atenție la detalii, în deplină simbioză cu dorințele familiei moderne.</span><span data-en>Modern apartments designed with responsibility and attention to detail, in perfect harmony with the desires of the modern family.</span></div>
           </div>
           <div class="mv-box">
-            <div class="mv-title">Viziunea Noastră</div>
-            <div class="mv-text">Un ansamblu la standarde înalte, într-o zonă cu real potențial de creștere investițională — locuința perfectă azi, investiția inteligentă pentru mâine.</div>
+            <div class="mv-title"><span data-ro>Viziunea Noastră</span><span data-en>Our Vision</span></div>
+            <div class="mv-text"><span data-ro>Un ansamblu la standarde înalte, într-o zonă cu real potențial de creștere investițională — locuința perfectă azi, investiția inteligentă pentru mâine.</span><span data-en>A high-standard complex in an area with real investment growth potential — the perfect home today, the smart investment for tomorrow.</span></div>
           </div>
         </div>
       </div>
@@ -518,37 +544,37 @@ footer{
   <div class="mw">
     <div class="reveal">
       <div class="eyebrow">Prețuri &amp; Disponibilitate</div>
-      <h2 class="section-title">Alege Tipul Tău<br>de Apartament</h2>
-      <p class="body-text">Toate apartamentele vin cu <strong style="color:var(--gold-light);">bucătărie complet mobilată și utilată</strong> — cadou la cumpărare. Avans minim: 10.000 €.</p>
+      <h2 class="section-title"><span data-ro>Alege Tipul Tău<br>de Apartament</span><span data-en>Choose Your<br>Apartment Type</span></h2>
+      <p class="body-text"><span data-ro>Toate apartamentele vin cu <strong style="color:var(--gold-light);">bucătărie complet mobilată și utilată</strong> — cadou la cumpărare. Avans minim: 10.000 €.</span><span data-en>All apartments come with a <strong style="color:var(--gold-light);">fully furnished and equipped kitchen</strong> — gift with purchase. Minimum down payment: €10,000.</span></p>
     </div>
     <div class="prices-grid">
       <div class="price-card reveal">
-        <div class="price-type">Studio Dublu</div>
+        <div class="price-type"><span data-ro>Studio Dublu</span><span data-en>Double Studio</span></div>
         <div class="price-val">115.000</div>
-        <div class="price-unit">euro + TVA · de la 43 m²</div>
-        <div class="price-avans">Avans minim 10.000 €</div>
-        <a href="https://new-point.ro/#contact" target="_blank" class="price-cta">Cere Ofertă</a>
+        <div class="price-unit"><span data-ro>euro + TVA · de la 43 m²</span><span data-en>euro + VAT · from 43 m²</span></div>
+        <div class="price-avans"><span data-ro>Avans minim 10.000 €</span><span data-en>Min. down €10,000</span></div>
+        <a href="https://new-point.ro/#contact" target="_blank" class="price-cta"><span data-ro>Cere Ofertă</span><span data-en>Request Offer</span></a>
       </div>
       <div class="price-card featured reveal">
-        <div class="price-type">2 Camere</div>
+        <div class="price-type"><span data-ro>2 Camere</span><span data-en>2 Rooms</span></div>
         <div class="price-val">130.000</div>
-        <div class="price-unit">euro + TVA · de la 52 m²</div>
-        <div class="price-avans">Avans minim 10.000 €</div>
-        <a href="https://new-point.ro/#contact" target="_blank" class="price-cta">Cere Ofertă</a>
+        <div class="price-unit"><span data-ro>euro + TVA · de la 52 m²</span><span data-en>euro + VAT · from 52 m²</span></div>
+        <div class="price-avans"><span data-ro>Avans minim 10.000 €</span><span data-en>Min. down €10,000</span></div>
+        <a href="https://new-point.ro/#contact" target="_blank" class="price-cta"><span data-ro>Cere Ofertă</span><span data-en>Request Offer</span></a>
       </div>
       <div class="price-card reveal">
-        <div class="price-type">3 Camere</div>
+        <div class="price-type"><span data-ro>3 Camere</span><span data-en>3 Rooms</span></div>
         <div class="price-val">165.000</div>
-        <div class="price-unit">euro + TVA · de la 54 m²</div>
-        <div class="price-avans">Avans minim 10.000 €</div>
-        <a href="https://new-point.ro/#contact" target="_blank" class="price-cta">Cere Ofertă</a>
+        <div class="price-unit"><span data-ro>euro + TVA · de la 54 m²</span><span data-en>euro + VAT · from 54 m²</span></div>
+        <div class="price-avans"><span data-ro>Avans minim 10.000 €</span><span data-en>Min. down €10,000</span></div>
+        <a href="https://new-point.ro/#contact" target="_blank" class="price-cta"><span data-ro>Cere Ofertă</span><span data-en>Request Offer</span></a>
       </div>
       <div class="price-card reveal">
-        <div class="price-type">Penthouse 4 Camere</div>
+        <div class="price-type"><span data-ro>Penthouse 4 Camere</span><span data-en>4-Room Penthouse</span></div>
         <div class="price-val">380.000</div>
-        <div class="price-unit">euro + TVA · suprafață premium</div>
-        <div class="price-avans">Ofertă exclusivă</div>
-        <a href="https://new-point.ro/#contact" target="_blank" class="price-cta">Cere Ofertă</a>
+        <div class="price-unit"><span data-ro>euro + TVA · suprafață premium</span><span data-en>euro + VAT · premium size</span></div>
+        <div class="price-avans"><span data-ro>Ofertă exclusivă</span><span data-en>Exclusive offer</span></div>
+        <a href="https://new-point.ro/#contact" target="_blank" class="price-cta"><span data-ro>Cere Ofertă</span><span data-en>Request Offer</span></a>
       </div>
     </div>
   </div>
@@ -559,15 +585,15 @@ footer{
   <div class="mw">
     <div class="reveal">
       <div class="eyebrow">Facilități</div>
-      <h2 class="section-title">Tot ce ai nevoie,<br>chiar acasă</h2>
+      <h2 class="section-title"><span data-ro>Tot ce ai nevoie,<br>chiar acasă</span><span data-en>Everything you need,<br>right at home</span></h2>
     </div>
     <div class="facilities-grid">
-      <div class="fac-item reveal"><div class="fac-icon">🍳</div><div class="fac-title">Bucătărie Premium Inclusă</div><div class="fac-text">Fiecare apartament este livrat cu bucătărie complet mobilată și utilată — un cadou în valoare semnificativă, fără costuri suplimentare.</div></div>
-      <div class="fac-item reveal"><div class="fac-icon">🏊</div><div class="fac-title">Zone Comune Premium</div><div class="fac-text">Spații comune proiectate la standarde ridicate, cu atenție la detalii arhitecturale și materiale superioare.</div></div>
-      <div class="fac-item reveal"><div class="fac-icon">🅿️</div><div class="fac-title">Locuri de Parcare</div><div class="fac-text">Parcări subterane și supraterane disponibile, cu acces securizat pentru rezidențele complexului.</div></div>
-      <div class="fac-item reveal"><div class="fac-icon">🌿</div><div class="fac-title">Spații Verzi</div><div class="fac-text">Zone verzi amenajate în jurul complexului, creând un mediu urban echilibrat și plăcut pentru întreaga familie.</div></div>
-      <div class="fac-item reveal"><div class="fac-icon">🔒</div><div class="fac-title">Securitate 24/7</div><div class="fac-text">Sistem de supraveghere video și acces securizat, pentru liniștea și siguranța tuturor rezidenților.</div></div>
-      <div class="fac-item reveal"><div class="fac-icon">🏗️</div><div class="fac-title">Finisaje Premium</div><div class="fac-text">Materiale de calitate superioară la toate finisajele interioare și exterioare — standardul Shikun &amp; Binui aplicat la fiecare detaliu.</div></div>
+      <div class="fac-item reveal"><div class="fac-icon">🍳</div><div class="fac-title"><span data-ro>Bucătărie Premium Inclusă</span><span data-en>Premium Kitchen Included</span></div><div class="fac-text"><span data-ro>Fiecare apartament este livrat cu bucătărie complet mobilată și utilată — un cadou în valoare semnificativă, fără costuri suplimentare.</span><span data-en>Every apartment is delivered with a fully furnished and equipped kitchen — a significant value gift, at no extra cost.</span></div></div>
+      <div class="fac-item reveal"><div class="fac-icon">🏊</div><div class="fac-title"><span data-ro>Zone Comune Premium</span><span data-en>Premium Common Areas</span></div><div class="fac-text"><span data-ro>Spații comune proiectate la standarde ridicate, cu atenție la detalii arhitecturale și materiale superioare.</span><span data-en>Common spaces designed to high standards, with attention to architectural details and superior materials.</span></div></div>
+      <div class="fac-item reveal"><div class="fac-icon">🅿️</div><div class="fac-title"><span data-ro>Locuri de Parcare</span><span data-en>Parking Spaces</span></div><div class="fac-text"><span data-ro>Parcări subterane și supraterane disponibile, cu acces securizat pentru rezidențele complexului.</span><span data-en>Underground and surface parking available, with secure access for complex residents.</span></div></div>
+      <div class="fac-item reveal"><div class="fac-icon">🌿</div><div class="fac-title"><span data-ro>Spații Verzi</span><span data-en>Green Areas</span></div><div class="fac-text"><span data-ro>Zone verzi amenajate în jurul complexului, creând un mediu urban echilibrat și plăcut pentru întreaga familie.</span><span data-en>Landscaped green areas surrounding the complex, creating a balanced and pleasant urban environment for the whole family.</span></div></div>
+      <div class="fac-item reveal"><div class="fac-icon">🔒</div><div class="fac-title"><span data-ro>Securitate 24/7</span><span data-en>24/7 Security</span></div><div class="fac-text"><span data-ro>Sistem de supraveghere video și acces securizat, pentru liniștea și siguranța tuturor rezidenților.</span><span data-en>Video surveillance system and secured access, for the peace of mind and safety of all residents.</span></div></div>
+      <div class="fac-item reveal"><div class="fac-icon">🏗️</div><div class="fac-title"><span data-ro>Finisaje Premium</span><span data-en>Premium Finishes</span></div><div class="fac-text"><span data-ro>Materiale de calitate superioară la toate finisajele interioare și exterioare — standardul Shikun &amp; Binui aplicat la fiecare detaliu.</span><span data-en>Superior quality materials for all interior and exterior finishes — the Shikun &amp; Binui standard applied to every detail.</span></div></div>
     </div>
   </div>
 </section>
@@ -576,18 +602,18 @@ footer{
 <section id="location">
   <div class="mw">
     <div class="reveal">
-      <div class="eyebrow">Locație</div>
-      <h2 class="section-title">Pipera — Inima<br>Nordului București</h2>
+      <div class="eyebrow"><span data-ro><span data-ro>Locație</span><span data-en>Location</span></span><span data-en>Location</span></div>
+      <h2 class="section-title"><span data-ro>Pipera — Inima<br>Nordului București</span><span data-en>Pipera — The Heart<br>of North Bucharest</span></h2>
     </div>
     <div class="location-grid">
       <div>
-        <p class="body-text" style="margin-bottom:32px;">New Point 2 este poziționat strategic în Pipera — cel mai dinamic hub de dezvoltare al Bucureștiului, cu acces rapid la toate punctele cheie ale orașului.</p>
+        <p class="body-text" style="margin-bottom:32px;"><span data-ro>New Point 2 este poziționat strategic în Pipera — cel mai dinamic hub de dezvoltare al Bucureștiului, cu acces rapid la toate punctele cheie ale orașului.</span><span data-en>New Point 2 is strategically positioned in Pipera — Bucharest's most dynamic development hub, with quick access to all key points in the city.</span></p>
         <div class="location-points">
-          <div class="loc-point reveal"><div class="loc-icon">✈️</div><div class="loc-text"><strong>Aeroport Henri Coandă</strong><span>Acces rapid, ideal pentru călători frecvenți și investitori internaționali</span></div></div>
-          <div class="loc-point reveal"><div class="loc-icon">🌳</div><div class="loc-text"><strong>Parcul Herăstrău</strong><span>Cel mai mare parc din București, la câteva minute distanță</span></div></div>
-          <div class="loc-point reveal"><div class="loc-icon">🚌</div><div class="loc-text"><strong>Transport în comun direct</strong><span>Stație de autobuz chiar în fața complexului — conexiune facilă la centrul orașului</span></div></div>
-          <div class="loc-point reveal"><div class="loc-icon">🏫</div><div class="loc-text"><strong>Școli și grădinițe de renume</strong><span>Cele mai apreciate instituții de învățământ din București, în imediata apropiere</span></div></div>
-          <div class="loc-point reveal"><div class="loc-icon">🛍️</div><div class="loc-text"><strong>Centre comerciale top</strong><span>Băneasa Shopping City, Promenada — shopping de lux la îndemână</span></div></div>
+          <div class="loc-point reveal"><div class="loc-icon">✈️</div><div class="loc-text"><strong><span data-ro>Aeroport Henri Coandă</span><span data-en>Henri Coandă Airport</span></strong><span><span data-ro>Acces rapid, ideal pentru călători frecvenți și investitori internaționali</span><span data-en>Quick access, ideal for frequent travellers and international investors</span></span></div></div>
+          <div class="loc-point reveal"><div class="loc-icon">🌳</div><div class="loc-text"><strong><span data-ro>Parcul Herăstrău</span><span data-en>Herăstrău Park</span></strong><span><span data-ro>Cel mai mare parc din București, la câteva minute distanță</span><span data-en>Bucharest's largest park, just minutes away</span></span></div></div>
+          <div class="loc-point reveal"><div class="loc-icon">🚌</div><div class="loc-text"><strong><span data-ro>Transport în comun direct</span><span data-en>Direct Public Transport</span></strong><span><span data-ro>Stație de autobuz chiar în fața complexului — conexiune facilă la centrul orașului</span><span data-en>Bus stop right in front of the complex — easy connection to the city centre</span></span></div></div>
+          <div class="loc-point reveal"><div class="loc-icon">🏫</div><div class="loc-text"><strong><span data-ro>Școli și grădinițe de renume</span><span data-en>Prestigious Schools &amp; Kindergartens</span></strong><span><span data-ro>Cele mai apreciate instituții de învățământ din București, în imediata apropiere</span><span data-en>Bucharest's most acclaimed educational institutions in the immediate vicinity</span></span></div></div>
+          <div class="loc-point reveal"><div class="loc-icon">🛍️</div><div class="loc-text"><strong><span data-ro>Centre comerciale top</span><span data-en>Top Shopping Centres</span></strong><span><span data-ro>Băneasa Shopping City, Promenada — shopping de lux la îndemână</span><span data-en>Băneasa Shopping City, Promenada — luxury shopping at your fingertips</span></span></div></div>
         </div>
       </div>
       <div class="map-placeholder reveal">
@@ -606,43 +632,43 @@ footer{
 <section id="apartments">
   <div class="mw">
     <div class="reveal">
-      <div class="eyebrow">Planuri Apartamente</div>
-      <h2 class="section-title">Găsește Spațiul<br>Perfect pentru Tine</h2>
-      <p class="body-text" style="margin-bottom:40px;">Descoperă planurile detaliate ale apartamentelor disponibile. Click pe "Vezi Plan" pentru imaginea completă.</p>
+      <div class="eyebrow"><span data-ro>Planuri Apartamente</span><span data-en>Apartment Plans</span></div>
+      <h2 class="section-title"><span data-ro>Găsește Spațiul<br>Perfect pentru Tine</span><span data-en>Find Your<br>Perfect Space</span></h2>
+      <p class="body-text" style="margin-bottom:40px;"><span data-ro>Descoperă planurile detaliate ale apartamentelor disponibile. Click pe "Vezi Plan" pentru imaginea completă.</span><span data-en>Discover the detailed floor plans of available apartments. Click "View Plan" for the full image.</span></p>
     </div>
     <div class="apt-tabs">
-      <button class="apt-tab active" onclick="switchTab('studio')">Studio Dublu</button>
-      <button class="apt-tab" onclick="switchTab('2cam')">2 Camere</button>
-      <button class="apt-tab" onclick="switchTab('3cam')">3 Camere</button>
+      <button class="apt-tab active" onclick="switchTab('studio')"><span data-ro>Studio Dublu</span><span data-en>Double Studio</span></button>
+      <button class="apt-tab" onclick="switchTab('2cam')"><span data-ro>2 Camere</span><span data-en>2 Rooms</span></button>
+      <button class="apt-tab" onclick="switchTab('3cam')"><span data-ro>3 Camere</span><span data-en>3 Rooms</span></button>
       <button class="apt-tab" onclick="switchTab('pent')">Penthouse</button>
     </div>
 
     <!-- STUDIO -->
     <div class="apt-tab-content active apt-grid" id="tab-studio">
-      <div class="apt-card"><div class="apt-card-img"><img src="https://new-point.ro/wp-content/uploads/2025/08/A1-16.webp" alt="A1-16" onerror="this.style.display='none'"></div><div class="apt-card-body"><div class="apt-card-name">Tip A1 16</div><div class="apt-specs"><div class="apt-spec"><strong>Suprafață</strong>44.21 m²</div><div class="apt-spec"><strong>Balcon</strong>5.35 m²</div></div><a href="https://new-point.ro/wp-content/uploads/2025/08/Studio-dublu-A1-16-A1-36.jpg" target="_blank" class="apt-plan-link">Vezi Plan →</a></div></div>
-      <div class="apt-card"><div class="apt-card-img"><img src="https://new-point.ro/wp-content/uploads/2024/10/A2-14.webp" alt="A2-14" onerror="this.style.display='none'"></div><div class="apt-card-body"><div class="apt-card-name">Tip A2 14</div><div class="apt-specs"><div class="apt-spec"><strong>Suprafață</strong>43.72 m²</div><div class="apt-spec"><strong>Balcon</strong>6.85 m²</div></div><a href="https://new-point.ro/wp-content/uploads/2024/10/plan-A2-14.webp" target="_blank" class="apt-plan-link">Vezi Plan →</a></div></div>
+      <div class="apt-card"><div class="apt-card-img"><img src="https://new-point.ro/wp-content/uploads/2025/08/A1-16.webp" alt="A1-16" onerror="this.style.display='none'"></div><div class="apt-card-body"><div class="apt-card-name">Tip A1 16</div><div class="apt-specs"><div class="apt-spec"><strong><span data-ro>Suprafață</span><span data-en>Area</span></strong>44.21 m²</div><div class="apt-spec"><strong><span data-ro>Balcon</span><span data-en>Balcony</span></strong>5.35 m²</div></div><a href="https://new-point.ro/wp-content/uploads/2025/08/Studio-dublu-A1-16-A1-36.jpg" target="_blank" class="apt-plan-link"><span data-ro>Vezi Plan →</span><span data-en>View Plan →</span></a></div></div>
+      <div class="apt-card"><div class="apt-card-img"><img src="https://new-point.ro/wp-content/uploads/2024/10/A2-14.webp" alt="A2-14" onerror="this.style.display='none'"></div><div class="apt-card-body"><div class="apt-card-name">Tip A2 14</div><div class="apt-specs"><div class="apt-spec"><strong><span data-ro>Suprafață</span><span data-en>Area</span></strong>43.72 m²</div><div class="apt-spec"><strong><span data-ro>Balcon</span><span data-en>Balcony</span></strong>6.85 m²</div></div><a href="https://new-point.ro/wp-content/uploads/2024/10/plan-A2-14.webp" target="_blank" class="apt-plan-link"><span data-ro>Vezi Plan →</span><span data-en>View Plan →</span></a></div></div>
     </div>
 
     <!-- 2 CAMERE -->
     <div class="apt-tab-content apt-grid" id="tab-2cam">
-      <div class="apt-card"><div class="apt-card-img"><img src="https://new-point.ro/wp-content/uploads/2024/10/A1-02-1.webp" alt="A1-02" onerror="this.style.display='none'"></div><div class="apt-card-body"><div class="apt-card-name">Tip A1 02</div><div class="apt-specs"><div class="apt-spec"><strong>Suprafață</strong>52.56 m²</div><div class="apt-spec"><strong>Balcon</strong>76.50 m²</div></div><a href="https://new-point.ro/wp-content/uploads/2024/10/plan-A1-02.webp" target="_blank" class="apt-plan-link">Vezi Plan →</a></div></div>
-      <div class="apt-card"><div class="apt-card-img"><img src="https://new-point.ro/wp-content/uploads/2024/10/A1-12.webp" alt="A1-12" onerror="this.style.display='none'"></div><div class="apt-card-body"><div class="apt-card-name">Tip A1 12</div><div class="apt-specs"><div class="apt-spec"><strong>Suprafață</strong>52.56 m²</div><div class="apt-spec"><strong>Balcon</strong>5.97 m²</div></div><a href="https://new-point.ro/wp-content/uploads/2024/10/plan-A1-12.webp" target="_blank" class="apt-plan-link">Vezi Plan →</a></div></div>
-      <div class="apt-card"><div class="apt-card-img"><img src="https://new-point.ro/wp-content/uploads/2024/10/A1-15.webp" alt="A1-15" onerror="this.style.display='none'"></div><div class="apt-card-body"><div class="apt-card-name">Tip A1 15</div><div class="apt-specs"><div class="apt-spec"><strong>Suprafață</strong>54.68 m²</div><div class="apt-spec"><strong>Balcon</strong>6.66 m²</div></div><a href="https://new-point.ro/wp-content/uploads/2024/10/plan-A1-15.webp" target="_blank" class="apt-plan-link">Vezi Plan →</a></div></div>
-      <div class="apt-card"><div class="apt-card-img"><img src="https://new-point.ro/wp-content/uploads/2024/10/A2-02.webp" alt="A2-02" onerror="this.style.display='none'"></div><div class="apt-card-body"><div class="apt-card-name">Tip A2 02</div><div class="apt-specs"><div class="apt-spec"><strong>Suprafață</strong>52.04 m²</div><div class="apt-spec"><strong>Grădină</strong>75.15 m²</div></div><a href="https://new-point.ro/wp-content/uploads/2024/10/plan-A2-02.webp" target="_blank" class="apt-plan-link">Vezi Plan →</a></div></div>
-      <div class="apt-card"><div class="apt-card-img"><img src="https://new-point.ro/wp-content/uploads/2024/10/B4-12.webp" alt="B4-12" onerror="this.style.display='none'"></div><div class="apt-card-body"><div class="apt-card-name">Tip B4 12</div><div class="apt-specs"><div class="apt-spec"><strong>Suprafață</strong>52.56 m²</div><div class="apt-spec"><strong>Balcon</strong>5.97 m²</div></div><a href="https://new-point.ro/wp-content/uploads/2024/10/plan-B4-12.webp" target="_blank" class="apt-plan-link">Vezi Plan →</a></div></div>
-      <div class="apt-card"><div class="apt-card-img"><img src="https://new-point.ro/wp-content/uploads/2024/10/B5-12.webp" alt="B5-12" onerror="this.style.display='none'"></div><div class="apt-card-body"><div class="apt-card-name">Tip B5 12</div><div class="apt-specs"><div class="apt-spec"><strong>Suprafață</strong>51.91 m²</div><div class="apt-spec"><strong>Balcon</strong>5.97 m²</div></div><a href="https://new-point.ro/wp-content/uploads/2024/10/plan-B5-12.webp" target="_blank" class="apt-plan-link">Vezi Plan →</a></div></div>
+      <div class="apt-card"><div class="apt-card-img"><img src="https://new-point.ro/wp-content/uploads/2024/10/A1-02-1.webp" alt="A1-02" onerror="this.style.display='none'"></div><div class="apt-card-body"><div class="apt-card-name">Tip A1 02</div><div class="apt-specs"><div class="apt-spec"><strong><span data-ro>Suprafață</span><span data-en>Area</span></strong>52.56 m²</div><div class="apt-spec"><strong><span data-ro>Balcon</span><span data-en>Balcony</span></strong>76.50 m²</div></div><a href="https://new-point.ro/wp-content/uploads/2024/10/plan-A1-02.webp" target="_blank" class="apt-plan-link"><span data-ro>Vezi Plan →</span><span data-en>View Plan →</span></a></div></div>
+      <div class="apt-card"><div class="apt-card-img"><img src="https://new-point.ro/wp-content/uploads/2024/10/A1-12.webp" alt="A1-12" onerror="this.style.display='none'"></div><div class="apt-card-body"><div class="apt-card-name">Tip A1 12</div><div class="apt-specs"><div class="apt-spec"><strong><span data-ro>Suprafață</span><span data-en>Area</span></strong>52.56 m²</div><div class="apt-spec"><strong><span data-ro>Balcon</span><span data-en>Balcony</span></strong>5.97 m²</div></div><a href="https://new-point.ro/wp-content/uploads/2024/10/plan-A1-12.webp" target="_blank" class="apt-plan-link"><span data-ro>Vezi Plan →</span><span data-en>View Plan →</span></a></div></div>
+      <div class="apt-card"><div class="apt-card-img"><img src="https://new-point.ro/wp-content/uploads/2024/10/A1-15.webp" alt="A1-15" onerror="this.style.display='none'"></div><div class="apt-card-body"><div class="apt-card-name">Tip A1 15</div><div class="apt-specs"><div class="apt-spec"><strong><span data-ro>Suprafață</span><span data-en>Area</span></strong>54.68 m²</div><div class="apt-spec"><strong><span data-ro>Balcon</span><span data-en>Balcony</span></strong>6.66 m²</div></div><a href="https://new-point.ro/wp-content/uploads/2024/10/plan-A1-15.webp" target="_blank" class="apt-plan-link"><span data-ro>Vezi Plan →</span><span data-en>View Plan →</span></a></div></div>
+      <div class="apt-card"><div class="apt-card-img"><img src="https://new-point.ro/wp-content/uploads/2024/10/A2-02.webp" alt="A2-02" onerror="this.style.display='none'"></div><div class="apt-card-body"><div class="apt-card-name">Tip A2 02</div><div class="apt-specs"><div class="apt-spec"><strong><span data-ro>Suprafață</span><span data-en>Area</span></strong>52.04 m²</div><div class="apt-spec"><strong><span data-ro>Grădină</span><span data-en>Garden</span></strong>75.15 m²</div></div><a href="https://new-point.ro/wp-content/uploads/2024/10/plan-A2-02.webp" target="_blank" class="apt-plan-link"><span data-ro>Vezi Plan →</span><span data-en>View Plan →</span></a></div></div>
+      <div class="apt-card"><div class="apt-card-img"><img src="https://new-point.ro/wp-content/uploads/2024/10/B4-12.webp" alt="B4-12" onerror="this.style.display='none'"></div><div class="apt-card-body"><div class="apt-card-name">Tip B4 12</div><div class="apt-specs"><div class="apt-spec"><strong><span data-ro>Suprafață</span><span data-en>Area</span></strong>52.56 m²</div><div class="apt-spec"><strong><span data-ro>Balcon</span><span data-en>Balcony</span></strong>5.97 m²</div></div><a href="https://new-point.ro/wp-content/uploads/2024/10/plan-B4-12.webp" target="_blank" class="apt-plan-link"><span data-ro>Vezi Plan →</span><span data-en>View Plan →</span></a></div></div>
+      <div class="apt-card"><div class="apt-card-img"><img src="https://new-point.ro/wp-content/uploads/2024/10/B5-12.webp" alt="B5-12" onerror="this.style.display='none'"></div><div class="apt-card-body"><div class="apt-card-name">Tip B5 12</div><div class="apt-specs"><div class="apt-spec"><strong><span data-ro>Suprafață</span><span data-en>Area</span></strong>51.91 m²</div><div class="apt-spec"><strong><span data-ro>Balcon</span><span data-en>Balcony</span></strong>5.97 m²</div></div><a href="https://new-point.ro/wp-content/uploads/2024/10/plan-B5-12.webp" target="_blank" class="apt-plan-link"><span data-ro>Vezi Plan →</span><span data-en>View Plan →</span></a></div></div>
     </div>
 
     <!-- 3 CAMERE -->
     <div class="apt-tab-content apt-grid" id="tab-3cam">
-      <div class="apt-card"><div class="apt-card-img"><img src="https://new-point.ro/wp-content/uploads/2024/10/A1-01.webp" alt="A1-01" onerror="this.style.display='none'"></div><div class="apt-card-body"><div class="apt-card-name">Tip A1 01</div><div class="apt-specs"><div class="apt-spec"><strong>Suprafață</strong>68.46 m²</div><div class="apt-spec"><strong>Grădină</strong>87.40 m²</div></div><a href="https://new-point.ro/wp-content/uploads/2024/10/plan-A1-01.webp" target="_blank" class="apt-plan-link">Vezi Plan →</a></div></div>
-      <div class="apt-card"><div class="apt-card-img"><img src="https://new-point.ro/wp-content/uploads/2024/10/A1-04.webp" alt="A1-04" onerror="this.style.display='none'"></div><div class="apt-card-body"><div class="apt-card-name">Tip A1 04</div><div class="apt-specs"><div class="apt-spec"><strong>Suprafață</strong>82.00 m²</div><div class="apt-spec"><strong>Grădină</strong>56.70 m²</div></div><a href="https://new-point.ro/wp-content/uploads/2024/10/plan-A1-04.webp" target="_blank" class="apt-plan-link">Vezi Plan →</a></div></div>
-      <div class="apt-card"><div class="apt-card-img"><img src="https://new-point.ro/wp-content/uploads/2024/10/A3-01.webp" alt="A3-01" onerror="this.style.display='none'"></div><div class="apt-card-body"><div class="apt-card-name">Tip A3 01</div><div class="apt-specs"><div class="apt-spec"><strong>Suprafață</strong>53.89 m²</div><div class="apt-spec"><strong>Grădină</strong>31.30 m²</div></div><a href="https://new-point.ro/wp-content/uploads/2024/10/plan-A3-01.webp" target="_blank" class="apt-plan-link">Vezi Plan →</a></div></div>
+      <div class="apt-card"><div class="apt-card-img"><img src="https://new-point.ro/wp-content/uploads/2024/10/A1-01.webp" alt="A1-01" onerror="this.style.display='none'"></div><div class="apt-card-body"><div class="apt-card-name">Tip A1 01</div><div class="apt-specs"><div class="apt-spec"><strong><span data-ro>Suprafață</span><span data-en>Area</span></strong>68.46 m²</div><div class="apt-spec"><strong><span data-ro>Grădină</span><span data-en>Garden</span></strong>87.40 m²</div></div><a href="https://new-point.ro/wp-content/uploads/2024/10/plan-A1-01.webp" target="_blank" class="apt-plan-link"><span data-ro>Vezi Plan →</span><span data-en>View Plan →</span></a></div></div>
+      <div class="apt-card"><div class="apt-card-img"><img src="https://new-point.ro/wp-content/uploads/2024/10/A1-04.webp" alt="A1-04" onerror="this.style.display='none'"></div><div class="apt-card-body"><div class="apt-card-name">Tip A1 04</div><div class="apt-specs"><div class="apt-spec"><strong><span data-ro>Suprafață</span><span data-en>Area</span></strong>82.00 m²</div><div class="apt-spec"><strong><span data-ro>Grădină</span><span data-en>Garden</span></strong>56.70 m²</div></div><a href="https://new-point.ro/wp-content/uploads/2024/10/plan-A1-04.webp" target="_blank" class="apt-plan-link"><span data-ro>Vezi Plan →</span><span data-en>View Plan →</span></a></div></div>
+      <div class="apt-card"><div class="apt-card-img"><img src="https://new-point.ro/wp-content/uploads/2024/10/A3-01.webp" alt="A3-01" onerror="this.style.display='none'"></div><div class="apt-card-body"><div class="apt-card-name">Tip A3 01</div><div class="apt-specs"><div class="apt-spec"><strong><span data-ro>Suprafață</span><span data-en>Area</span></strong>53.89 m²</div><div class="apt-spec"><strong><span data-ro>Grădină</span><span data-en>Garden</span></strong>31.30 m²</div></div><a href="https://new-point.ro/wp-content/uploads/2024/10/plan-A3-01.webp" target="_blank" class="apt-plan-link"><span data-ro>Vezi Plan →</span><span data-en>View Plan →</span></a></div></div>
     </div>
 
     <!-- PENTHOUSE -->
     <div class="apt-tab-content apt-grid" id="tab-pent">
-      <div class="apt-card" style="grid-column:1/-1;max-width:400px;"><div class="apt-card-body" style="padding:32px;"><div class="apt-card-name" style="font-size:32px;">Penthouse 4 Camere</div><div class="apt-specs"><div class="apt-spec"><strong>Preț</strong>380.000 €</div><div class="apt-spec"><strong>Tip</strong>Exclusiv</div></div><p style="font-size:14px;color:var(--text-dim);margin:16px 0;">Cel mai exclusivist tip de proprietate din ansamblu — priveliști panoramice, finisaje de lux și spații generoase. Contactați-ne pentru detalii și disponibilitate.</p><a href="https://new-point.ro/#contact" target="_blank" class="btn-gold" style="display:inline-block;margin-top:8px;">Cere Ofertă Exclusivă</a></div></div>
+      <div class="apt-card" style="grid-column:1/-1;max-width:400px;"><div class="apt-card-body" style="padding:32px;"><div class="apt-card-name" style="font-size:32px;"><span data-ro>Penthouse 4 Camere</span><span data-en>4-Room Penthouse</span></div><div class="apt-specs"><div class="apt-spec"><strong><span data-ro>Preț</span><span data-en>Price</span></strong>380.000 €</div><div class="apt-spec"><strong><span data-ro>Tip</span><span data-en>Type</span></strong>Exclusiv</div></div><p style="font-size:14px;color:var(--text-dim);margin:16px 0;"><span data-ro>Cel mai exclusivist tip de proprietate din ansamblu — priveliști panoramice, finisaje de lux și spații generoase. Contactați-ne pentru detalii și disponibilitate.</span><span data-en>The most exclusive property type in the complex — panoramic views, luxury finishes and generous spaces. Contact us for details and availability.</span></p><a href="https://new-point.ro/#contact" target="_blank" class="btn-gold" style="display:inline-block;margin-top:8px;"><span data-ro>Cere Ofertă Exclusivă</span><span data-en>Request Exclusive Offer</span></a></div></div>
     </div>
   </div>
 </section>
@@ -650,25 +676,25 @@ footer{
 <!-- FINAL CTA -->
 <section id="final-cta">
   <div class="mw">
-    <h2 class="cta-title">Gata să îți<br>găsești <em>noul acasă?</em></h2>
-    <p class="cta-sub">Cere o ofertă personalizată astăzi — echipa noastră te contactează în maximum 24 ore.</p>
+    <h2 class="cta-title"><span data-ro>Gata să îți<br>găsești <em>noul acasă?</em></span><span data-en>Ready to find<br>your <em>new home?</em></span></h2>
+    <p class="cta-sub"><span data-ro>Cere o ofertă personalizată astăzi — echipa noastră te contactează în maximum 24 ore.</span><span data-en>Request a personalised offer today — our team will contact you within 24 hours.</span></p>
     <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-      <a href="https://new-point.ro/#contact" target="_blank" class="btn-gold">Cere Ofertă Personalizată</a>
-      <a href="https://new-point.ro/" target="_blank" class="btn-outline">Vizitează new-point.ro</a>
+      <a href="https://new-point.ro/#contact" target="_blank" class="btn-gold"><span data-ro>Cere Ofertă Personalizată</span><span data-en>Request Personalized Offer</span></a>
+      <a href="https://new-point.ro/" target="_blank" class="btn-outline"><span data-ro>Vizitează new-point.ro</span><span data-en>Visit new-point.ro</span></a>
     </div>
     <div class="cta-contact">
       <div class="contact-item">
-        <span class="label">Telefon</span>
+        <span class="label"><span data-ro>Telefon</span><span data-en>Phone</span></span>
         <a href="tel:+40755056910" class="val">+40 755 056 910</a>
       </div>
       <div style="width:1px;height:40px;background:rgba(184,146,74,0.2);"></div>
       <div class="contact-item">
-        <span class="label">Proiect</span>
+        <span class="label"><span data-ro>Proiect</span><span data-en>Project</span></span>
         <a href="https://new-point.ro" target="_blank" class="val">new-point.ro</a>
       </div>
       <div style="width:1px;height:40px;background:rgba(184,146,74,0.2);"></div>
       <div class="contact-item">
-        <span class="label">Dezvoltator</span>
+        <span class="label"><span data-ro>Dezvoltator</span><span data-en>Developer</span></span>
         <a href="https://shikunbinui.com" target="_blank" class="val">shikunbinui.com</a>
       </div>
     </div>
@@ -681,9 +707,9 @@ footer{
     <div class="footer-inner">
       <span class="footer-copy">© 2025 Shikun & Binui Romania · New Point 2 Residence · Point Development</span>
       <div class="footer-links">
-        <a href="index.html">← Înapoi la Portalul Principal</a>
-        <a href="https://new-point.ro/termeni-si-conditii" target="_blank">Termeni și Condiții</a>
-        <a href="https://new-point.ro/#contact" target="_blank">Contact</a>
+        <a href="index.html"><span data-ro>← Înapoi la Portalul Principal</span><span data-en>← Back to Main Portal</span></a>
+        <a href="https://new-point.ro/termeni-si-conditii" target="_blank"><span data-ro>Termeni și Condiții</span><span data-en>Terms &amp; Conditions</span></a>
+        <a href="https://new-point.ro/#contact" target="_blank"><span data-ro>Contact</span><span data-en>Contact</span></a>
       </div>
     </div>
   </div>
@@ -698,6 +724,18 @@ document.getElementById('navbar').querySelector('img').src = 'data:image/jpeg;ba
 document.getElementById('aboutImg').querySelector('img').src = 'data:image/png;base64,' + npImg;
 document.getElementById('heroBg').style.backgroundImage = "url('data:image/png;base64," + npImg + "')";
 
+
+// Language
+function setLang(lang) {
+  document.body.classList.toggle('ro', lang === 'ro');
+  document.getElementById('btn-ro').classList.toggle('active', lang === 'ro');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.documentElement.lang = lang === 'ro' ? 'ro' : 'en';
+  localStorage.setItem('np-lang', lang);
+}
+const savedLang = localStorage.getItem('np-lang') || 'ro';
+setLang(savedLang);
+
 // Tab switching
 function switchTab(tab) {
   document.querySelectorAll('.apt-tab-content').forEach(el => el.classList.remove('active'));
@@ -706,7 +744,7 @@ function switchTab(tab) {
   event.target.classList.add('active');
 }
 
-// Scroll reveal
+// <span data-ro>Scroll</span><span data-en>Scroll</span> reveal
 const observer = new IntersectionObserver(entries => {
   entries.forEach((e, i) => {
     if (e.isIntersecting) {
