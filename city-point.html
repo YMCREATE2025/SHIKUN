@@ -230,6 +230,29 @@ footer{background:var(--dark2);border-top:1px solid rgba(138,176,212,0.1);paddin
   .apt-types{grid-template-columns:1fr;}
   .pf-row{grid-template-columns:1fr;}
 }
+
+  /* FAC ITEM IMAGE */
+  .fac-item { padding: 0; overflow: hidden; }
+  .fac-img {
+    width: 100%; aspect-ratio: 16/9;
+    overflow: hidden;
+    border-radius: 10px 10px 0 0;
+  }
+  .fac-img img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    filter: brightness(0.82) saturate(0.9);
+    transition: transform 0.6s ease, filter 0.4s;
+  }
+  .fac-item:hover .fac-img img {
+    transform: scale(1.06);
+    filter: brightness(0.95) saturate(1.05);
+  }
+  .fac-body { padding: 24px 24px 28px; }
+  .fac-icon { font-size: 24px; margin-bottom: 10px; }
+  .fac-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400; color: var(--white); margin-bottom: 8px; }
+  .fac-text { font-size: 14px; color: var(--text-dim); line-height: 1.7; }
+
 </style>
 </head>
 <body>
@@ -460,12 +483,12 @@ footer{background:var(--dark2);border-top:1px solid rgba(138,176,212,0.1);paddin
       <h2 class="section-title"><span data-ro>Un Stil de Viață<br>Complet</span><span data-en>A Complete<br>Lifestyle</span></h2>
     </div>
     <div class="fac-grid">
-      <div class="fac-item reveal"><div class="fac-icon">🌿</div><div class="fac-title"><span data-ro>6.000 m² Spații Verzi</span><span data-en>6,000 m² Green Areas</span></div><div class="fac-text"><span data-ro>Spații verzi generoase, amenajate peisagistic, care transformă City Point într-o oază de natură urbană în inima nordului Bucureștiului.</span><span data-en>Generously landscaped green spaces that transform City Point into an urban nature oasis in the heart of northern Bucharest.</span></div></div>
-      <div class="fac-item reveal"><div class="fac-icon">🚇</div><div class="fac-title"><span data-ro>La câțiva pași de metrou</span><span data-en>Steps from Metro</span></div><div class="fac-text"><span data-ro>Acces rapid la rețeaua de metrou a Bucureștiului — conexiune directă la centrul orașului și la toate punctele de interes.</span><span data-en>Quick access to Bucharest's metro network — direct connection to the city centre and all points of interest.</span></div></div>
-      <div class="fac-item reveal"><div class="fac-icon">🏗️</div><div class="fac-title"><span data-ro>Materiale Superioare</span><span data-en>Superior Materials</span></div><div class="fac-text"><span data-ro>Proiectul a fost conceput pentru cele mai exigente gusturi, folosind exclusiv materiale de calitate superioară la toate finisajele.</span><span data-en>The project was designed for the most discerning tastes, using exclusively superior quality materials for all finishes.</span></div></div>
-      <div class="fac-item reveal"><div class="fac-icon">🅿️</div><div class="fac-title"><span data-ro>Parcări Subterane</span><span data-en>Underground Parking</span></div><div class="fac-text"><span data-ro>Locuri de parcare subterane securizate, disponibile pentru rezidenți — confort și siguranță maximă.</span><span data-en>Secure underground parking spaces available for residents — maximum comfort and safety.</span></div></div>
-      <div class="fac-item reveal"><div class="fac-icon">🔒</div><div class="fac-title"><span data-ro>Securitate &amp; Pază</span><span data-en>Security &amp; Guard</span></div><div class="fac-text"><span data-ro>Sistem de supraveghere video și acces securizat cu pază, pentru liniștea deplină a tuturor rezidenților.</span><span data-en>Video surveillance system and guarded secure access, for the complete peace of mind of all residents.</span></div></div>
-      <div class="fac-item reveal"><div class="fac-icon">🏙️</div><div class="fac-title"><span data-ro>Locație Premium</span><span data-en>Premium Location</span></div><div class="fac-text"><span data-ro>Bulevardul Aviației — cea mai exclusivistă adresă din nordul Bucureștiului, cu acces rapid la Parcul Herăstrău și centrele comerciale top.</span><span data-en>Aviației Boulevard — the most exclusive address in northern Bucharest, with quick access to Herăstrău Park and top shopping centres.</span></div></div>
+      <div class="fac-item reveal"><div class="fac-img"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Spații verzi amenajate" loading="lazy" onerror="this.parentElement.style.display='none'"></div><div class="fac-body"><div class="fac-icon">🌿</div><div class="fac-title"><span data-ro>6.000 m² Spații Verzi</span><span data-en>6,000 m² Green Areas</span></div><div class="fac-text"><span data-ro>Spații verzi generoase, amenajate peisagistic, care transformă City Point într-o oază de natură urbană în inima nordului Bucureștiului.</span><span data-en>Generously landscaped green spaces that transform City Point into an urban nature oasis in the heart of northern Bucharest.</span></div></div></div>
+      <div class="fac-item reveal"><div class="fac-img"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Bucharest_Metro_Titan_station.jpg/800px-Bucharest_Metro_Titan_station.jpg" alt="Stație metrou" loading="lazy" onerror="this.parentElement.style.display='none'"></div><div class="fac-body"><div class="fac-icon">🚇</div><div class="fac-title"><span data-ro>La câțiva pași de metrou</span><span data-en>Steps from Metro</span></div><div class="fac-text"><span data-ro>Acces rapid la rețeaua de metrou a Bucureștiului — conexiune directă la centrul orașului și la toate punctele de interes.</span><span data-en>Quick access to Bucharest's metro network — direct connection to the city centre and all points of interest.</span></div></div></div>
+      <div class="fac-item reveal"><div class="fac-img"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c349f46?w=800&q=80" alt="Finisaje premium" loading="lazy" onerror="this.parentElement.style.display='none'"></div><div class="fac-body"><div class="fac-icon">🏗️</div><div class="fac-title"><span data-ro>Materiale Superioare</span><span data-en>Superior Materials</span></div><div class="fac-text"><span data-ro>Proiectul a fost conceput pentru cele mai exigente gusturi, folosind exclusiv materiale de calitate superioară la toate finisajele.</span><span data-en>The project was designed for the most discerning tastes, using exclusively superior quality materials for all finishes.</span></div></div></div>
+      <div class="fac-item reveal"><div class="fac-img"><img src="https://images.unsplash.com/photo-1573348722427-f1d6819fdf98?w=800&q=80" alt="Parcare subterană" loading="lazy" onerror="this.parentElement.style.display='none'"></div><div class="fac-body"><div class="fac-icon">🅿️</div><div class="fac-title"><span data-ro>Parcări Subterane</span><span data-en>Underground Parking</span></div><div class="fac-text"><span data-ro>Locuri de parcare subterane securizate, disponibile pentru rezidenți — confort și siguranță maximă.</span><span data-en>Secure underground parking spaces available for residents — maximum comfort and safety.</span></div></div></div>
+      <div class="fac-item reveal"><div class="fac-img"><img src="https://images.unsplash.com/photo-1558002038-1055907df827?w=800&q=80" alt="Securitate 24/7" loading="lazy" onerror="this.parentElement.style.display='none'"></div><div class="fac-body"><div class="fac-icon">🔒</div><div class="fac-title"><span data-ro>Securitate &amp; Pază</span><span data-en>Security &amp; Guard</span></div><div class="fac-text"><span data-ro>Sistem de supraveghere video și acces securizat cu pază, pentru liniștea deplină a tuturor rezidenților.</span><span data-en>Video surveillance system and guarded secure access, for the complete peace of mind of all residents.</span></div></div></div>
+      <div class="fac-item reveal"><div class="fac-img"><img src="https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?w=800&q=80" alt="Locație premium Aviației" loading="lazy" onerror="this.parentElement.style.display='none'"></div><div class="fac-body"><div class="fac-icon">🏙️</div><div class="fac-title"><span data-ro>Locație Premium</span><span data-en>Premium Location</span></div><div class="fac-text"><span data-ro>Bulevardul Aviației — cea mai exclusivistă adresă din nordul Bucureștiului, cu acces rapid la Parcul Herăstrău și centrele comerciale top.</span><span data-en>Aviației Boulevard — the most exclusive address in northern Bucharest, with quick access to Herăstrău Park and top shopping centres.</span></div></div></div>
     </div>
   </div>
 </section>
