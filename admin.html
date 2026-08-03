@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel — Shikun & Binui Romania</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #b8924a; --gold-light: #d4aa6a;
+  --dark: #0e0d0b; --dark2: #1a1814; --dark3: #242118;
+  --text: #e8e0d0; --text-dim: #9a9080;
+  --green: #4caf7d; --red: #e05555; --blue: #5b9bd5;
+  --sidebar: 260px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'DM Sans',sans-serif; background:#111; color:var(--text); min-height:100vh; direction:rtl; }
+
+/* LOGIN */
+#login-screen {
+  position:fixed; inset:0; background:var(--dark);
+  display:flex; align-items:center; justify-content:center; z-index:9999;
+}
+.login-box {
+  background:var(--dark2); border:1px solid rgba(184,146,74,0.2);
+  border-radius:16px; padding:48px 40px; width:360px;
+  text-align:center; box-shadow:0 32px 80px rgba(0,0,0,0.7);
+}
+.login-logo { font-family:'Cormorant Garamond',serif; font-size:28px; color:var(--gold); margin-bottom:6px; }
+.login-sub { font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--text-dim); margin-bottom:36px; }
+.login-input {
+  width:100%; padding:14px 16px; background:var(--dark3);
+  border:1px solid rgba(184,146,74,0.2); border-radius:8px;
+  color:var(--text); font-family:'DM Sans',sans-serif; font-size:15px;
+  outline:none; text-align:center; letter-spacing:4px;
+  transition:border-color 0.3s; margin-bottom:16px;
+}
+.login-input:focus { border-color:rgba(184,146,74,0.5); }
+.login-btn {
+  width:100%; padding:14px; background:var(--gold); color:var(--dark);
+  border:none; border-radius:8px; font-size:13px; letter-spacing:2px;
+  text-transform:uppercase; font-weight:600; cursor:pointer;
+  font-family:'DM Sans',sans-serif; transition:background 0.3s;
+}
+.login-btn:hover { background:var(--gold-light); }
+.login-error { color:var(--red); font-size:13px; margin-top:12px; display:none; }
+
+/* LAYOUT */
+#app { display:none; min-height:100vh; }
+
+/* SIDEBAR */
+.sidebar {
+  position:fixed; top:0; right:0; bottom:0; width:var(--sidebar);
+  background:var(--dark2); border-left:1px solid rgba(184,146,74,0.12);
+  display:flex; flex-direction:column; z-index:100;
+  overflow-y:auto;
+}
+.sidebar-header {
+  padding:24px 20px 20px;
+  border-bottom:1px solid rgba(184,146,74,0.1);
+}
+.sidebar-logo { font-family:'Cormorant Garamond',serif; font-size:18px; color:var(--gold); }
+.sidebar-sub { font-size:10px; letter-spacing:2px; color:var(--text-dim); text-transform:uppercase; margin-top:2px; }
+.sidebar-nav { padding:16px 0; flex:1; }
+.nav-section { padding:8px 20px 4px; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--text-dim); }
+.nav-item {
+  display:flex; align-items:center; gap:10px;
+  padding:10px 20px; cursor:pointer; font-size:14px;
+  color:var(--text-dim); transition:all 0.2s; border-right:3px solid transparent;
+}
+.nav-item:hover { color:var(--text); background:rgba(184,146,74,0.05); }
+.nav-item.active { color:var(--gold); background:rgba(184,146,74,0.08); border-right-color:var(--gold); }
+.nav-item .icon { font-size:16px; width:20px; text-align:center; }
+.sidebar-footer {
+  padding:16px 20px;
+  border-top:1px solid rgba(184,146,74,0.1);
+}
+.logout-btn {
+  width:100%; padding:10px; background:none;
+  border:1px solid rgba(184,146,74,0.2); border-radius:6px;
+  color:var(--text-dim); font-size:12px; letter-spacing:2px;
+  text-transform:uppercase; cursor:pointer; font-family:'DM Sans',sans-serif;
+  transition:all 0.2s;
+}
+.logout-btn:hover { border-color:var(--red); color:var(--red); }
+
+/* MAIN */
+.main {
+  margin-right:var(--sidebar);
+  min-height:100vh;
+}
+.topbar {
+  background:var(--dark2); border-bottom:1px solid rgba(184,146,74,0.12);
+  padding:16px 32px; display:flex; align-items:center; justify-content:space-between;
+  position:sticky; top:0; z-index:50;
+}
+.topbar-title { font-size:16px; font-weight:500; color:var(--text); }
+.topbar-actions { display:flex; gap:12px; align-items:center; }
+.btn-save {
+  background:var(--green); color:#fff; border:none; border-radius:6px;
+  padding:10px 24px; font-size:12px; letter-spacing:2px; text-transform:uppercase;
+  font-weight:600; cursor:pointer; font-family:'DM Sans',sans-serif;
+  transition:all 0.3s; display:flex; align-items:center; gap:8px;
+}
+.btn-save:hover { background:#3d9e68; }
+.btn-save:disabled { background:var(--dark3); color:var(--text-dim); cursor:not-allowed; }
+.btn-preview {
+  background:none; color:var(--blue); border:1px solid rgba(91,155,213,0.4);
+  border-radius:6px; padding:10px 20px; font-size:12px; letter-spacing:2px;
+  text-transform:uppercase; cursor:pointer; font-family:'DM Sans',sans-serif;
+  transition:all 0.3s; text-decoration:none; display:inline-flex; align-items:center; gap:6px;
+}
+.btn-preview:hover { background:rgba(91,155,213,0.1); }
+.save-status { font-size:12px; color:var(--text-dim); }
+.save-status.saved { color:var(--green); }
+.save-status.saving { color:var(--gold); }
+.save-status.error { color:var(--red); }
+
+/* CONTENT */
+.content { padding:32px; }
+.page-section { display:none; }
+.page-section.active { display:block; }
+
+/* CARDS */
+.admin-card {
+  background:var(--dark2); border:1px solid rgba(184,146,74,0.12);
+  border-radius:12px; margin-bottom:20px; overflow:hidden;
+}
+.card-header {
+  padding:16px 24px; background:rgba(184,146,74,0.04);
+  border-bottom:1px solid rgba(184,146,74,0.1);
+  display:flex; align-items:center; justify-content:space-between;
+  cursor:pointer; user-select:none;
+}
+.card-title { font-size:13px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); display:flex; align-items:center; gap:10px; }
+.card-toggle { color:var(--text-dim); transition:transform 0.3s; font-size:12px; }
+.card-body { padding:24px; }
+.card-collapsed .card-body { display:none; }
+.card-collapsed .card-toggle { transform:rotate(-90deg); }
+
+/* FORM FIELDS */
+.field-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.field-grid.single { grid-template-columns:1fr; }
+.field-group { display:flex; flex-direction:column; gap:6px; }
+.field-label {
+  font-size:11px; letter-spacing:2px; text-transform:uppercase;
+  color:var(--text-dim); display:flex; align-items:center; gap:6px;
+}
+.lang-tag {
+  font-size:9px; padding:2px 6px; border-radius:100px;
+  background:rgba(184,146,74,0.15); color:var(--gold); letter-spacing:1px;
+}
+.lang-tag.en { background:rgba(91,155,213,0.15); color:var(--blue); }
+.field-input, .field-textarea {
+  background:var(--dark3); border:1px solid rgba(184,146,74,0.15);
+  border-radius:8px; padding:12px 14px; color:var(--text);
+  font-family:'DM Sans',sans-serif; font-size:14px; outline:none;
+  transition:border-color 0.25s; width:100%;
+}
+.field-input:focus, .field-textarea:focus { border-color:rgba(184,146,74,0.45); }
+.field-textarea { resize:vertical; min-height:80px; line-height:1.6; }
+
+/* IMAGE UPLOADER */
+.img-uploader {
+  border:2px dashed rgba(184,146,74,0.2); border-radius:10px;
+  padding:0; cursor:pointer; transition:all 0.3s; overflow:hidden;
+  position:relative; background:var(--dark3);
+}
+.img-uploader:hover { border-color:rgba(184,146,74,0.5); }
+.img-preview {
+  width:100%; aspect-ratio:16/7; object-fit:cover; display:block;
+}
+.img-placeholder {
+  width:100%; aspect-ratio:16/7; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:8px;
+  color:var(--text-dim); font-size:13px;
+}
+.img-placeholder .icon { font-size:32px; opacity:0.5; }
+.img-overlay {
+  position:absolute; inset:0; background:rgba(14,13,11,0.7);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:8px; opacity:0; transition:opacity 0.3s;
+}
+.img-uploader:hover .img-overlay { opacity:1; }
+.img-overlay span { font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); }
+.img-overlay .icon { font-size:28px; }
+.img-input { position:absolute; inset:0; opacity:0; cursor:pointer; }
+.img-actions { display:flex; gap:8px; margin-top:8px; }
+.img-btn {
+  font-size:11px; letter-spacing:1px; text-transform:uppercase;
+  padding:6px 14px; border-radius:6px; cursor:pointer;
+  font-family:'DM Sans',sans-serif; border:none; transition:all 0.2s;
+}
+.img-btn.change { background:rgba(184,146,74,0.15); color:var(--gold); }
+.img-btn.change:hover { background:rgba(184,146,74,0.25); }
+.img-btn.remove { background:rgba(224,85,85,0.1); color:var(--red); }
+.img-btn.remove:hover { background:rgba(224,85,85,0.2); }
+
+/* SECTION DIVIDER */
+.section-divider {
+  display:flex; align-items:center; gap:12px;
+  margin:28px 0 20px; color:var(--text-dim); font-size:11px;
+  letter-spacing:2px; text-transform:uppercase;
+}
+.section-divider::before, .section-divider::after {
+  content:''; flex:1; height:1px; background:rgba(184,146,74,0.1);
+}
+
+/* TOAST */
+.toast {
+  position:fixed; bottom:32px; left:50%; transform:translateX(-50%) translateY(100px);
+  background:var(--dark3); border:1px solid rgba(184,146,74,0.3);
+  border-radius:10px; padding:14px 24px; font-size:14px;
+  display:flex; align-items:center; gap:10px;
+  box-shadow:0 12px 40px rgba(0,0,0,0.5); z-index:9999;
+  transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+}
+.toast.show { transform:translateX(-50%) translateY(0); }
+.toast.success { border-color:rgba(76,175,125,0.4); color:var(--green); }
+.toast.error-toast { border-color:rgba(224,85,85,0.4); color:var(--red); }
+
+/* GITHUB SETTINGS */
+.settings-form { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.token-hint { font-size:12px; color:var(--text-dim); margin-top:6px; line-height:1.6; }
+.token-hint a { color:var(--gold); }
+
+/* RESPONSIVE */
+@media (max-width:768px) {
+  .sidebar { width:220px; }
+  .main { margin-right:220px; }
+  .field-grid { grid-template-columns:1fr; }
+  .settings-form { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">Shikun & Binui</div>
+    <div class="login-sub">Admin Panel · Romania</div>
+    <input type="password" class="login-input" id="pw-input" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="login-btn" onclick="doLogin()">כניסה למערכת</button>
+    <div class="login-error" id="login-error">סיסמה שגויה. נסה שוב.</div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">S&B Admin</div>
+      <div class="sidebar-sub">ניהול תוכן אתר</div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">דפים</div>
+      <div class="nav-item active" onclick="showPage('portal')"><span class="icon">🏠</span>פורטל ראשי</div>
+      <div class="nav-item" onclick="showPage('new-point')"><span class="icon">🏗️</span>New Point</div>
+      <div class="nav-item" onclick="showPage('city-point')"><span class="icon">🏙️</span>City Point</div>
+      <div class="nav-section" style="margin-top:8px;">הגדרות</div>
+      <div class="nav-item" onclick="showPage('settings')"><span class="icon">⚙️</span>GitHub / פרסום</div>
+    </nav>
+    <div class="sidebar-footer">
+      <button class="logout-btn" onclick="doLogout()">יציאה</button>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-title" id="page-title">פורטל ראשי</div>
+      <div class="topbar-actions">
+        <span class="save-status" id="save-status"></span>
+        <a class="btn-preview" href="https://ymcreate2025.github.io/SHIKUN/" target="_blank">👁 תצוגה מקדימה</a>
+        <button class="btn-save" id="save-btn" onclick="saveContent()">💾 שמור ופרסם</button>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <!-- ═══════════ PORTAL ═══════════ -->
+      <div class="page-section active" id="section-portal">
+
+        <!-- HERO -->
+        <div class="admin-card">
+          <div class="card-header" onclick="toggleCard(this)">
+            <div class="card-title"><span>🎬</span>Hero Section</div>
+            <span class="card-toggle">▼</span>
+          </div>
+          <div class="card-body">
+            <div class="field-group" style="margin-bottom:20px;">
+              <div class="field-label">תמונת הירו <span style="color:var(--text-dim);font-size:11px;">(PNG/JPG/WebP)</span></div>
+              <div class="img-uploader" id="img-portal-hero" onclick="triggerImgUpload('portal-hero-file')">
+                <img class="img-preview" id="img-portal-hero-preview" style="display:none;">
+                <div class="img-placeholder" id="img-portal-hero-empty">
+                  <span class="icon">🖼️</span>
+                  <span>לחץ להעלאת תמונה</span>
+                  <span style="font-size:11px;opacity:0.6;">1920×1080 מומלץ</span>
+                </div>
+                <div class="img-overlay">
+                  <span class="icon">📷</span>
+                  <span>החלף תמונה</span>
+                </div>
+                <input type="file" id="portal-hero-file" class="img-input" accept="image/*" onchange="handleImg(this,'portal-hero','portal.hero.image')">
+              </div>
+            </div>
+            <div class="field-grid">
+              <div class="field-group">
+                <label class="field-label">כותרת <span class="lang-tag">RO</span></label>
+                <input class="field-input" data-path="portal.hero.title_ro" placeholder="Construim Excelență...">
+              </div>
+              <div class="field-group">
+                <label class="field-label">כותרת <span class="lang-tag en">EN</span></label>
+                <input class="field-input" data-path="portal.hero.title_en" placeholder="Building Excellence...">
+              </div>
+              <div class="field-group">
+                <label class="field-label">תת-כותרת <span class="lang-tag">RO</span></label>
+                <input class="field-input" data-path="portal.hero.subtitle_ro">
+              </div>
+              <div class="field-group">
+                <label class="field-label">תת-כותרת <span class="lang-tag en">EN</span></label>
+                <input class="field-input" data-path="portal.hero.subtitle_en">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STATS -->
+        <div class="admin-card">
+          <div class="card-header" onclick="toggleCard(this)">
+            <div class="card-title"><span>📊</span>Stats Bar</div>
+            <span class="card-toggle">▼</span>
+          </div>
+          <div class="card-body">
+            <div class="field-grid">
+              <div class="field-group"><label class="field-label">שנת ייסוד</label><input class="field-input" data-path="portal.stats.founded"></div>
+              <div class="field-group"><label class="field-label">מדינות</label><input class="field-input" data-path="portal.stats.countries"></div>
+              <div class="field-group"><label class="field-label">יבשות</label><input class="field-input" data-path="portal.stats.continents"></div>
+              <div class="field-group"><label class="field-label">פרויקטים ברומניה</label><input class="field-input" data-path="portal.stats.romania_projects"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- NP CARD -->
+        <div class="admin-card">
+          <div class="card-header" onclick="toggleCard(this)">
+            <div class="card-title"><span>🏗️</span>כרטיס New Point</div>
+            <span class="card-toggle">▼</span>
+          </div>
+          <div class="card-body">
+            <div class="field-group" style="margin-bottom:20px;">
+              <div class="field-label">תמונת הכרטיס</div>
+              <div class="img-uploader" onclick="triggerImgUpload('portal-np-file')">
+                <img class="img-preview" id="img-portal-np-preview" style="display:none;">
+                <div class="img-placeholder" id="img-portal-np-empty"><span class="icon">🖼️</span><span>לחץ להעלאת תמונה</span></div>
+                <div class="img-overlay"><span class="icon">📷</span><span>החלף תמונה</span></div>
+                <input type="file" id="portal-np-file" class="img-input" accept="image/*" onchange="handleImg(this,'portal-np','portal.np_card.image')">
+              </div>
+            </div>
+            <div class="field-grid">
+              <div class="field-group"><label class="field-label">תיאור <span class="lang-tag">RO</span></label><textarea class="field-textarea" data-path="portal.np_card.desc_ro"></textarea></div>
+              <div class="field-group"><label class="field-label">תיאור <span class="lang-tag en">EN</span></label><textarea class="field-textarea" data-path="portal.np_card.desc_en"></textarea></div>
+              <div class="field-group"><label class="field-label">מחיר מ- (€)</label><input class="field-input" data-path="portal.np_card.price_from"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CP CARD -->
+        <div class="admin-card">
+          <div class="card-header" onclick="toggleCard(this)">
+            <div class="card-title"><span>🏙️</span>כרטיס City Point</div>
+            <span class="card-toggle">▼</span>
+          </div>
+          <div class="card-body">
+            <div class="field-group" style="margin-bottom:20px;">
+              <div class="field-label">תמונת הכרטיס</div>
+              <div class="img-uploader" onclick="triggerImgUpload('portal-cp-file')">
+                <img class="img-preview" id="img-portal-cp-preview" style="display:none;">
+                <div class="img-placeholder" id="img-portal-cp-empty"><span class="icon">🖼️</span><span>לחץ להעלאת תמונה</span></div>
+                <div class="img-overlay"><span class="icon">📷</span><span>החלף תמונה</span></div>
+                <input type="file" id="portal-cp-file" class="img-input" accept="image/*" onchange="handleImg(this,'portal-cp','portal.cp_card.image')">
+              </div>
+            </div>
+            <div class="field-grid">
+              <div class="field-group"><label class="field-label">תיאור <span class="lang-tag">RO</span></label><textarea class="field-textarea" data-path="portal.cp_card.desc_ro"></textarea></div>
+              <div class="field-group"><label class="field-label">תיאור <span class="lang-tag en">EN</span></label><textarea class="field-textarea" data-path="portal.cp_card.desc_en"></textarea></div>
+              <div class="field-group"><label class="field-label">מחיר מ- (€)</label><input class="field-input" data-path="portal.cp_card.price_from"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════ NEW POINT ═══════════ -->
+      <div class="page-section" id="section-new-point">
+
+        <div class="admin-card">
+          <div class="card-header" onclick="toggleCard(this)">
+            <div class="card-title"><span>🎬</span>Hero Section</div>
+            <span class="card-toggle">▼</span>
+          </div>
+          <div class="card-body">
+            <div class="field-group" style="margin-bottom:20px;">
+              <div class="field-label">תמונת הירו</div>
+              <div class="img-uploader" onclick="triggerImgUpload('np-hero-file')">
+                <img class="img-preview" id="img-np-hero-preview" style="display:none;">
+                <div class="img-placeholder" id="img-np-hero-empty"><span class="icon">🖼️</span><span>לחץ להעלאת תמונה</span><span style="font-size:11px;opacity:0.6;">1920×1080 מומלץ</span></div>
+                <div class="img-overlay"><span class="icon">📷</span><span>החלף תמונה</span></div>
+                <input type="file" id="np-hero-file" class="img-input" accept="image/*" onchange="handleImg(this,'np-hero','new_point.hero.image')">
+              </div>
+            </div>
+            <div class="field-grid">
+              <div class="field-group"><label class="field-label">תת-כותרת <span class="lang-tag">RO</span></label><input class="field-input" data-path="new_point.hero.subtitle_ro"></div>
+              <div class="field-group"><label class="field-label">תת-כותרת <span class="lang-tag en">EN</span></label><input class="field-input" data-path="new_point.hero.subtitle_en"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <div class="card-header" onclick="toggleCard(this)">
+            <div class="card-title"><span>📢</span>Promo Banner</div>
+            <span class="card-toggle">▼</span>
+          </div>
+          <div class="card-body">
+            <div class="field-grid">
+              <div class="field-group"><label class="field-label">טקסט <span class="lang-tag">RO</span></label><textarea class="field-textarea" data-path="new_point.promo.text_ro"></textarea></div>
+              <div class="field-group"><label class="field-label">טקסט <span class="lang-tag en">EN</span></label><textarea class="field-textarea" data-path="new_point.promo.text_en"></textarea></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <div class="card-header" onclick="toggleCard(this)">
+            <div class="card-title"><span>💰</span>מחירים</div>
+            <span class="card-toggle">▼</span>
+          </div>
+          <div class="card-body">
+            <div class="section-divider">Studio Dublu</div>
+            <div class="field-grid">
+              <div class="field-group"><label class="field-label">מחיר (€)</label><input class="field-input" data-path="new_point.prices.studio.price"></div>
+              <div class="field-group"><label class="field-label">גודל <span class="lang-tag">RO</span></label><input class="field-input" data-path="new_point.prices.studio.size_ro"></div>
+            </div>
+            <div class="section-divider">2 Camere</div>
+            <div class="field-grid">
+              <div class="field-group"><label class="field-label">מחיר (€)</label><input class="field-input" data-path="new_point.prices.two_rooms.price"></div>
+              <div class="field-group"><label class="field-label">גודל <span class="lang-tag">RO</span></label><input class="field-input" data-path="new_point.prices.two_rooms.size_ro"></div>
+            </div>
+            <div class="section-divider">3 Camere</div>
+            <div class="field-grid">
+              <div class="field-group"><label class="field-label">מחיר (€)</label><input class="field-input" data-path="new_point.prices.three_rooms.price"></div>
+              <div class="field-group"><label class="field-label">גודל <span class="lang-tag">RO</span></label><input class="field-input" data-path="new_point.prices.three_rooms.size_ro"></div>
+            </div>
+            <div class="section-divider">Penthouse</div>
+            <div class="field-grid">
+              <div class="field-group"><label class="field-label">מחיר (€)</label><input class="field-input" data-path="new_point.prices.penthouse.price"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <div class="card-header" onclick="toggleCard(this)">
+            <div class="card-title"><span>🏢</span>About הפרויקט</div>
+            <span class="card-toggle">▼</span>
+          </div>
+          <div class="card-body">
+            <div class="field-group" style="margin-bottom:20px;">
+              <div class="field-label">תמונת הפרויקט</div>
+              <div class="img-uploader" onclick="triggerImgUpload('np-about-file')">
+                <img class="img-preview" id="img-np-about-preview" style="display:none;">
+                <div class="img-placeholder" id="img-np-about-empty"><span class="icon">🖼️</span><span>לחץ להעלאת תמונה</span></div>
+                <div class="img-overlay"><span class="icon">📷</span><span>החלף תמונה</span></div>
+                <input type="file" id="np-about-file" class="img-input" accept="image/*" onchange="handleImg(this,'np-about','new_point.about.image')">
+              </div>
+            </div>
+            <div class="field-grid">
+              <div class="field-group"><label class="field-label">תיאור 1 <span class="lang-tag">RO</span></label><textarea class="field-textarea" data-path="new_point.about.desc1_ro"></textarea></div>
+              <div class="field-group"><label class="field-label">תיאור 1 <span class="lang-tag en">EN</span></label><textarea class="field-textarea" data-path="new_point.about.desc1_en"></textarea></div>
+              <div class="field-group"><label class="field-label">תיאור 2 <span class="lang-tag">RO</span></label><textarea class="field-textarea" data-path="new_point.about.desc2_ro"></textarea></div>
+              <div class="field-group"><label class="field-label">תיאור 2 <span class="lang-tag en">EN</span></label><textarea class="field-textarea" data-path="new_point.about.desc2_en"></textarea></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <div class="card-header" onclick="toggleCard(this)">
+            <div class="card-title"><span>📞</span>פרטי קשר</div>
+            <span class="card-toggle">▼</span>
+          </div>
+          <div class="card-body">
+            <div class="field-grid">
+              <div class="field-group"><label class="field-label">אימייל</label><input class="field-input" data-path="new_point.contact_email" type="email"></div>
+              <div class="field-group"><label class="field-label">טלפון</label><input class="field-input" data-path="new_point.phone" type="tel"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════ CITY POINT ═══════════ -->
+      <div class="page-section" id="section-city-point">
+
+        <div class="admin-card">
+          <div class="card-header" onclick="toggleCard(this)">
+            <div class="card-title"><span>🎬</span>Hero Section</div>
+            <span class="card-toggle">▼</span>
+          </div>
+          <div class="card-body">
+            <div class="field-group" style="margin-bottom:20px;">
+              <div class="field-label">תמונת הירו</div>
+              <div class="img-uploader" onclick="triggerImgUpload('cp-hero-file')">
+                <img class="img-preview" id="img-cp-hero-preview" style="display:none;">
+                <div class="img-placeholder" id="img-cp-hero-empty"><span class="icon">🖼️</span><span>לחץ להעלאת תמונה</span><span style="font-size:11px;opacity:0.6;">1920×1080 מומלץ</span></div>
+                <div class="img-overlay"><span class="icon">📷</span><span>החלף תמונה</span></div>
+                <input type="file" id="cp-hero-file" class="img-input" accept="image/*" onchange="handleImg(this,'cp-hero','city_point.hero.image')">
+              </div>
+            </div>
+            <div class="field-grid">
+              <div class="field-group"><label class="field-label">תת-כותרת <span class="lang-tag">RO</span></label><input class="field-input" data-path="city_point.hero.subtitle_ro"></div>
+              <div class="field-group"><label class="field-label">תת-כותרת <span class="lang-tag en">EN</span></label><input class="field-input" data-path="city_point.hero.subtitle_en"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <div class="card-header" onclick="toggleCard(this)">
+            <div class="card-title"><span>📢</span>Promo Banner</div>
+            <span class="card-toggle">▼</span>
+          </div>
+          <div class="card-body">
+            <div class="field-grid">
+              <div class="field-group"><label class="field-label">טקסט <span class="lang-tag">RO</span></label><textarea class="field-textarea" data-path="city_point.promo.text_ro"></textarea></div>
+              <div class="field-group"><label class="field-label">טקסט <span class="lang-tag en">EN</span></label><textarea class="field-textarea" data-path="city_point.promo.text_en"></textarea></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <div class="card-header" onclick="toggleCard(this)">
+            <div class="card-title"><span>💰</span>מחירים</div>
+            <span class="card-toggle">▼</span>
+          </div>
+          <div class="card-body">
+            <div class="section-divider">Studio / Studio Dublu</div>
+            <div class="field-grid single"><div class="field-group"><label class="field-label">מחיר (€)</label><input class="field-input" data-path="city_point.prices.studio.price"></div></div>
+            <div class="section-divider">2 Camere</div>
+            <div class="field-grid single"><div class="field-group"><label class="field-label">מחיר (€)</label><input class="field-input" data-path="city_point.prices.two_rooms.price"></div></div>
+            <div class="section-divider">3 Camere</div>
+            <div class="field-grid single"><div class="field-group"><label class="field-label">מחיר (€)</label><input class="field-input" data-path="city_point.prices.three_rooms.price"></div></div>
+            <div class="section-divider">Duplex</div>
+            <div class="field-grid single"><div class="field-group"><label class="field-label">מחיר (€)</label><input class="field-input" data-path="city_point.prices.duplex.price"></div></div>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <div class="card-header" onclick="toggleCard(this)">
+            <div class="card-title"><span>🏢</span>About הפרויקט</div>
+            <span class="card-toggle">▼</span>
+          </div>
+          <div class="card-body">
+            <div class="field-group" style="margin-bottom:20px;">
+              <div class="field-label">תמונת הפרויקט</div>
+              <div class="img-uploader" onclick="triggerImgUpload('cp-about-file')">
+                <img class="img-preview" id="img-cp-about-preview" style="display:none;">
+                <div class="img-placeholder" id="img-cp-about-empty"><span class="icon">🖼️</span><span>לחץ להעלאת תמונה</span></div>
+                <div class="img-overlay"><span class="icon">📷</span><span>החלף תמונה</span></div>
+                <input type="file" id="cp-about-file" class="img-input" accept="image/*" onchange="handleImg(this,'cp-about','city_point.about.image')">
+              </div>
+            </div>
+            <div class="field-grid">
+              <div class="field-group"><label class="field-label">תיאור 1 <span class="lang-tag">RO</span></label><textarea class="field-textarea" data-path="city_point.about.desc1_ro"></textarea></div>
+              <div class="field-group"><label class="field-label">תיאור 1 <span class="lang-tag en">EN</span></label><textarea class="field-textarea" data-path="city_point.about.desc1_en"></textarea></div>
+              <div class="field-group"><label class="field-label">תיאור 2 <span class="lang-tag">RO</span></label><textarea class="field-textarea" data-path="city_point.about.desc2_ro"></textarea></div>
+              <div class="field-group"><label class="field-label">תיאור 2 <span class="lang-tag en">EN</span></label><textarea class="field-textarea" data-path="city_point.about.desc2_en"></textarea></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <div class="card-header" onclick="toggleCard(this)">
+            <div class="card-title"><span>📞</span>פרטי קשר</div>
+            <span class="card-toggle">▼</span>
+          </div>
+          <div class="card-body">
+            <div class="field-grid">
+              <div class="field-group"><label class="field-label">אימייל</label><input class="field-input" data-path="city_point.contact_email" type="email"></div>
+              <div class="field-group"><label class="field-label">טלפון</label><input class="field-input" data-path="city_point.phone" type="tel"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════ SETTINGS ═══════════ -->
+      <div class="page-section" id="section-settings">
+        <div class="admin-card">
+          <div class="card-header" onclick="toggleCard(this)">
+            <div class="card-title"><span>🔑</span>GitHub API Settings</div>
+            <span class="card-toggle">▼</span>
+          </div>
+          <div class="card-body">
+            <p style="font-size:14px;color:var(--text-dim);margin-bottom:20px;line-height:1.7;">
+              כדי לשמור ולפרסם שינויים ישירות לאתר, הזן את פרטי ה-GitHub שלך. הפרטים נשמרים רק בדפדפן שלך.
+            </p>
+            <div class="settings-form">
+              <div class="field-group">
+                <label class="field-label">GitHub Token</label>
+                <input class="field-input" id="gh-token" type="password" placeholder="ghp_xxxxxxxxxxxx">
+                <div class="token-hint">
+                  צור טוקן ב-<a href="https://github.com/settings/tokens/new" target="_blank">github.com/settings/tokens/new</a><br>
+                  סמן scope: <strong style="color:var(--gold);">repo</strong>
+                </div>
+              </div>
+              <div class="field-group">
+                <label class="field-label">שם משתמש GitHub</label>
+                <input class="field-input" id="gh-user" placeholder="YMCREATE2025">
+              </div>
+              <div class="field-group">
+                <label class="field-label">שם ה-Repository</label>
+                <input class="field-input" id="gh-repo" placeholder="SHIKUN">
+              </div>
+              <div class="field-group">
+                <label class="field-label">Branch</label>
+                <input class="field-input" id="gh-branch" placeholder="main">
+              </div>
+            </div>
+            <div style="margin-top:20px;display:flex;gap:12px;">
+              <button class="btn-save" onclick="saveGithubSettings()" style="width:auto;">💾 שמור הגדרות</button>
+              <button class="btn-preview" onclick="testGithubConnection()" style="width:auto;">🔌 בדוק חיבור</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <div class="card-header" onclick="toggleCard(this)">
+            <div class="card-title"><span>🔒</span>שינוי סיסמה</div>
+            <span class="card-toggle">▼</span>
+          </div>
+          <div class="card-body">
+            <div class="field-grid">
+              <div class="field-group">
+                <label class="field-label">סיסמה נוכחית</label>
+                <input class="field-input" id="pw-current" type="password">
+              </div>
+              <div class="field-group">
+                <label class="field-label">סיסמה חדשה</label>
+                <input class="field-input" id="pw-new" type="password">
+              </div>
+            </div>
+            <div style="margin-top:16px;">
+              <button class="btn-save" onclick="changePassword()" style="width:auto;">🔒 שנה סיסמה</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /content -->
+  </div><!-- /main -->
+</div><!-- /app -->
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ══════════════════════════════════════════
+//  STATE
+// ══════════════════════════════════════════
+const DEFAULT_PW = 'shikunadmin2024';
+let content = {};
+let dirty = false;
+
+// ══════════════════════════════════════════
+//  AUTH
+// ══════════════════════════════════════════
+function getPassword() {
+  return localStorage.getItem('sb-admin-pw') || DEFAULT_PW;
+}
+
+function doLogin() {
+  const val = document.getElementById('pw-input').value;
+  if (val === getPassword()) {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    loadContent();
+    loadGithubSettings();
+  } else {
+    document.getElementById('login-error').style.display = 'block';
+    document.getElementById('pw-input').value = '';
+    document.getElementById('pw-input').focus();
+  }
+}
+
+function doLogout() {
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('pw-input').value = '';
+}
+
+function changePassword() {
+  const cur = document.getElementById('pw-current').value;
+  const nw = document.getElementById('pw-new').value;
+  if (cur !== getPassword()) { showToast('סיסמה נוכחית שגויה', 'error'); return; }
+  if (nw.length < 6) { showToast('הסיסמה החדשה קצרה מדי (מינימום 6 תווים)', 'error'); return; }
+  localStorage.setItem('sb-admin-pw', nw);
+  showToast('✅ הסיסמה שונתה בהצלחה', 'success');
+  document.getElementById('pw-current').value = '';
+  document.getElementById('pw-new').value = '';
+}
+
+// ══════════════════════════════════════════
+//  NAVIGATION
+// ══════════════════════════════════════════
+const pageTitles = {
+  'portal': 'פורטל ראשי',
+  'new-point': 'New Point',
+  'city-point': 'City Point',
+  'settings': 'הגדרות GitHub'
+};
+
+const previewLinks = {
+  'portal': 'https://ymcreate2025.github.io/SHIKUN/',
+  'new-point': 'https://ymcreate2025.github.io/SHIKUN/new-point.html',
+  'city-point': 'https://ymcreate2025.github.io/SHIKUN/city-point.html',
+  'settings': 'https://ymcreate2025.github.io/SHIKUN/'
+};
+
+function showPage(page) {
+  document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('section-' + page).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n => {
+    if (n.getAttribute('onclick').includes("'" + page + "'")) n.classList.add('active');
+  });
+  document.getElementById('page-title').textContent = pageTitles[page];
+  document.querySelector('.btn-preview').href = previewLinks[page];
+  const saveBtn = document.getElementById('save-btn');
+  saveBtn.style.display = page === 'settings' ? 'none' : 'flex';
+}
+
+// ══════════════════════════════════════════
+//  CARDS TOGGLE
+// ══════════════════════════════════════════
+function toggleCard(header) {
+  header.parentElement.classList.toggle('card-collapsed');
+}
+
+// ══════════════════════════════════════════
+//  CONTENT — LOAD & BIND
+// ══════════════════════════════════════════
+async function loadContent() {
+  try {
+    const r = await fetch('https://ymcreate2025.github.io/SHIKUN/content.json?t=' + Date.now());
+    content = await r.json();
+  } catch(e) {
+    content = {};
+    showToast('⚠️ לא ניתן לטעון את התוכן הנוכחי', 'error');
+  }
+  bindFields();
+  bindImages();
+}
+
+function getPath(obj, path) {
+  return path.split('.').reduce((o, k) => o && o[k] !== undefined ? o[k] : '', obj);
+}
+
+function setPath(obj, path, value) {
+  const keys = path.split('.');
+  let cur = obj;
+  for (let i = 0; i < keys.length - 1; i++) {
+    if (!cur[keys[i]]) cur[keys[i]] = {};
+    cur = cur[keys[i]];
+  }
+  cur[keys[keys.length - 1]] = value;
+}
+
+function bindFields() {
+  document.querySelectorAll('[data-path]').forEach(el => {
+    const val = getPath(content, el.dataset.path);
+    el.value = val || '';
+    el.addEventListener('input', () => {
+      setPath(content, el.dataset.path, el.value);
+      dirty = true;
+      document.getElementById('save-status').textContent = 'שינויים לא שמורים';
+      document.getElementById('save-status').className = 'save-status';
+    });
+  });
+}
+
+function bindImages() {
+  // Show existing images from content
+  const imgMaps = [
+    { path: 'portal.hero.image', id: 'portal-hero' },
+    { path: 'portal.np_card.image', id: 'portal-np' },
+    { path: 'portal.cp_card.image', id: 'portal-cp' },
+    { path: 'new_point.hero.image', id: 'np-hero' },
+    { path: 'new_point.about.image', id: 'np-about' },
+    { path: 'city_point.hero.image', id: 'cp-hero' },
+    { path: 'city_point.about.image', id: 'cp-about' },
+  ];
+  imgMaps.forEach(({ path, id }) => {
+    const val = getPath(content, path);
+    if (val) showImgPreview(id, val);
+  });
+}
+
+// ══════════════════════════════════════════
+//  IMAGE HANDLING
+// ══════════════════════════════════════════
+function triggerImgUpload(inputId) {
+  // Let the file input handle it via click
+}
+
+function handleImg(input, previewId, contentPath) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    const b64 = e.target.result; // data:image/...;base64,...
+    setPath(content, contentPath, b64);
+    showImgPreview(previewId, b64);
+    dirty = true;
+    document.getElementById('save-status').textContent = 'שינויים לא שמורים';
+  };
+  reader.readAsDataURL(file);
+}
+
+function showImgPreview(id, src) {
+  const preview = document.getElementById('img-' + id + '-preview');
+  const empty = document.getElementById('img-' + id + '-empty');
+  if (preview) { preview.src = src; preview.style.display = 'block'; }
+  if (empty) empty.style.display = 'none';
+}
+
+// ══════════════════════════════════════════
+//  GITHUB SETTINGS
+// ══════════════════════════════════════════
+function loadGithubSettings() {
+  document.getElementById('gh-token').value = localStorage.getItem('gh-token') || '';
+  document.getElementById('gh-user').value = localStorage.getItem('gh-user') || 'YMCREATE2025';
+  document.getElementById('gh-repo').value = localStorage.getItem('gh-repo') || 'SHIKUN';
+  document.getElementById('gh-branch').value = localStorage.getItem('gh-branch') || 'main';
+}
+
+function saveGithubSettings() {
+  localStorage.setItem('gh-token', document.getElementById('gh-token').value);
+  localStorage.setItem('gh-user', document.getElementById('gh-user').value);
+  localStorage.setItem('gh-repo', document.getElementById('gh-repo').value);
+  localStorage.setItem('gh-branch', document.getElementById('gh-branch').value);
+  showToast('✅ הגדרות GitHub נשמרו', 'success');
+}
+
+async function testGithubConnection() {
+  const token = localStorage.getItem('gh-token');
+  const user = localStorage.getItem('gh-user') || 'YMCREATE2025';
+  const repo = localStorage.getItem('gh-repo') || 'SHIKUN';
+  if (!token) { showToast('❌ הזן GitHub Token תחילה', 'error'); return; }
+  try {
+    const r = await fetch(`https://api.github.com/repos/${user}/${repo}`, {
+      headers: { Authorization: 'token ' + token }
+    });
+    if (r.ok) showToast('✅ חיבור לגיטהאב תקין!', 'success');
+    else showToast('❌ שגיאת חיבור — בדוק Token והרשאות', 'error');
+  } catch(e) {
+    showToast('❌ שגיאת רשת', 'error');
+  }
+}
+
+// ══════════════════════════════════════════
+//  SAVE & PUBLISH
+// ══════════════════════════════════════════
+async function saveContent() {
+  const token = localStorage.getItem('gh-token');
+  const user = localStorage.getItem('gh-user') || 'YMCREATE2025';
+  const repo = localStorage.getItem('gh-repo') || 'SHIKUN';
+  const branch = localStorage.getItem('gh-branch') || 'main';
+
+  if (!token) {
+    showToast('❌ הגדר GitHub Token בהגדרות תחילה', 'error');
+    showPage('settings');
+    return;
+  }
+
+  const btn = document.getElementById('save-btn');
+  btn.disabled = true; btn.textContent = '⏳ שומר...';
+  setStatus('saving', 'שומר ומפרסם...');
+
+  try {
+    // Get current file SHA
+    const getR = await fetch(`https://api.github.com/repos/${user}/${repo}/contents/content.json?ref=${branch}`, {
+      headers: { Authorization: 'token ' + token }
+    });
+    const getJ = await getR.json();
+    const sha = getJ.sha;
+
+    // Update content.json
+    content.meta = { lastUpdated: new Date().toISOString(), version: '1.0' };
+    const jsonStr = JSON.stringify(content, null, 2);
+    const b64 = btoa(unescape(encodeURIComponent(jsonStr)));
+
+    const putR = await fetch(`https://api.github.com/repos/${user}/${repo}/contents/content.json`, {
+      method: 'PUT',
+      headers: { Authorization: 'token ' + token, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: 'Admin: update content ' + new Date().toLocaleString('he-IL'),
+        content: b64,
+        sha: sha,
+        branch: branch
+      })
+    });
+
+    if (putR.ok) {
+      dirty = false;
+      setStatus('saved', '✅ פורסם בהצלחה');
+      showToast('✅ התוכן פורסם לאתר בהצלחה!', 'success');
+    } else {
+      const err = await putR.json();
+      throw new Error(err.message);
+    }
+  } catch(e) {
+    setStatus('error', '❌ שגיאה בשמירה');
+    showToast('❌ שגיאה: ' + e.message, 'error');
+  } finally {
+    btn.disabled = false; btn.innerHTML = '💾 שמור ופרסם';
+  }
+}
+
+function setStatus(type, msg) {
+  const el = document.getElementById('save-status');
+  el.textContent = msg;
+  el.className = 'save-status ' + type;
+}
+
+// ══════════════════════════════════════════
+//  TOAST
+// ══════════════════════════════════════════
+let toastTimer;
+function showToast(msg, type='success') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show ' + (type === 'error' ? 'error-toast' : 'success');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+// ══════════════════════════════════════════
+//  INIT
+// ══════════════════════════════════════════
+document.getElementById('pw-input').focus();
+
+// Warn before leaving with unsaved changes
+window.addEventListener('beforeunload', e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ''; }
+});
+</script>
+</body>
+</html>
