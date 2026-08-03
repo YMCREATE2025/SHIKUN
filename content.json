@@ -1,0 +1,159 @@
+{
+  "meta": {
+    "lastUpdated": "2026-08-03",
+    "version": "1.0"
+  },
+  "portal": {
+    "hero": {
+      "title_en": "Building Excellence Across Borders",
+      "title_ro": "Construim Excelență Peste Granițe",
+      "subtitle_en": "Two landmark residences in Bucharest. One trusted name since 1924.",
+      "subtitle_ro": "Două ansambluri emblematice în București. Un nume de încredere din 1924.",
+      "image": ""
+    },
+    "stats": {
+      "founded": "1924",
+      "countries": "20+",
+      "continents": "4",
+      "romania_projects": "2"
+    },
+    "np_card": {
+      "title": "New Point",
+      "location_en": "Pipera, Bucharest North",
+      "location_ro": "Pipera, București Nord",
+      "desc_en": "Studios, 2 & 3-room apartments and luxury penthouses in Pipera — fully-equipped kitchens included.",
+      "desc_ro": "Studiouri, apartamente cu 2 și 3 camere și penthouse-uri de lux în Pipera — cu bucătărie complet utilată inclusă.",
+      "price_from": "115",
+      "image": ""
+    },
+    "cp_card": {
+      "title": "City Point",
+      "location_en": "Aviației, Bucharest North",
+      "location_ro": "Aviației, București Nord",
+      "desc_en": "A premium residential complex on Aviației Boulevard featuring 6,000 m² of landscaped green areas.",
+      "desc_ro": "Un complex rezidențial premium pe Bulevardul Aviației cu 6.000 m² de spații verzi amenajate.",
+      "price_from": "119",
+      "image": ""
+    }
+  },
+  "new_point": {
+    "hero": {
+      "presenter_en": "Shikun & Binui presents",
+      "presenter_ro": "Shikun & Binui prezintă",
+      "subtitle_en": "Pipera, Bucharest · Luxury apartments with included kitchen",
+      "subtitle_ro": "Pipera, București · Apartamente de lux cu bucătărie inclusă",
+      "image": ""
+    },
+    "promo": {
+      "text_en": "Gift with purchase: Fully equipped kitchen included · Only €10,000 down payment · Limited offer",
+      "text_ro": "Cadou la cumpărare: Bucătărie complet mobilată și utilată · Doar 10.000 € avans · Ofertă limitată"
+    },
+    "stats": {
+      "active_since": "2008",
+      "apt_types": "4",
+      "sizes": "44–380 m²",
+      "price_from": "115k€",
+      "down_payment": "10k€"
+    },
+    "prices": {
+      "studio": {
+        "name_en": "Double Studio",
+        "name_ro": "Studio Dublu",
+        "price": "115.000",
+        "size_en": "from 43 m²",
+        "size_ro": "de la 43 m²"
+      },
+      "two_rooms": {
+        "name_en": "2 Rooms",
+        "name_ro": "2 Camere",
+        "price": "130.000",
+        "size_en": "from 52 m²",
+        "size_ro": "de la 52 m²"
+      },
+      "three_rooms": {
+        "name_en": "3 Rooms",
+        "name_ro": "3 Camere",
+        "price": "165.000",
+        "size_en": "from 54 m²",
+        "size_ro": "de la 54 m²"
+      },
+      "penthouse": {
+        "name_en": "4-Room Penthouse",
+        "name_ro": "Penthouse 4 Camere",
+        "price": "380.000",
+        "size_en": "premium size",
+        "size_ro": "suprafață premium"
+      }
+    },
+    "about": {
+      "title_en": "New Point 2 Residence",
+      "title_ro": "New Point 2 Residence",
+      "desc1_en": "New Point 2 is a modern and elegant residential complex in Pipera — one of Bucharest's most dynamic development hubs.",
+      "desc1_ro": "New Point 2 este un ansamblu rezidențial modern și elegant din Pipera — una dintre cele mai dinamice zone de dezvoltare ale Bucureștiului.",
+      "desc2_en": "Strategically positioned with quick access to the airport, Herăstrău Park, top shopping centres and prestigious schools.",
+      "desc2_ro": "Poziționat strategic cu acces rapid la aeroport, Parcul Herăstrău, centre comerciale de top și școli de renume.",
+      "image": ""
+    },
+    "contact_email": "sales@new-point.ro",
+    "phone": "+40 755 056 910"
+  },
+  "city_point": {
+    "hero": {
+      "presenter_en": "Shikun & Binui presents",
+      "presenter_ro": "Shikun & Binui prezintă",
+      "subtitle_en": "Aviației, Bucharest · Premium residential complex with 6,000 m² green spaces",
+      "subtitle_ro": "Aviației, București · Complex rezidențial premium cu 6.000 m² spații verzi",
+      "image": ""
+    },
+    "promo": {
+      "text_en": "From the North you see the opportunities! Bloc D — Ready to Move · 6,000 m² green spaces · Steps from the metro",
+      "text_ro": "Din Nord se văd oportunitățile! Bloc D — Ready to Move · 6.000 m² spații verzi · La câțiva pași de metrou"
+    },
+    "stats": {
+      "active_since": "2008",
+      "green_area": "6.000",
+      "apt_types": "4",
+      "price_from": "119k€",
+      "metro": "Metro"
+    },
+    "prices": {
+      "studio": {
+        "name_en": "Studio / Double Studio",
+        "name_ro": "Studio / Studio Dublu",
+        "price": "119.000"
+      },
+      "two_rooms": {
+        "name_en": "2 Rooms",
+        "name_ro": "2 Camere",
+        "price": "147.000"
+      },
+      "three_rooms": {
+        "name_en": "3 Rooms",
+        "name_ro": "3 Camere",
+        "price": "183.000"
+      },
+      "duplex": {
+        "name_en": "Duplex",
+        "name_ro": "Duplex",
+        "price": "220.900"
+      }
+    },
+    "about": {
+      "title_en": "City Point Aviației",
+      "title_ro": "City Point Aviației",
+      "desc1_en": "City Point Aviației was designed for the most discerning tastes and needs, using exclusively superior materials.",
+      "desc1_ro": "City Point Aviației a fost conceput pentru cele mai exigente gusturi și nevoi, folosind exclusiv materiale superioare.",
+      "desc2_en": "With 6,000 m² of landscaped green areas and direct metro access, City Point offers perfect city connectivity.",
+      "desc2_ro": "Cu 6.000 m² de spații verzi amenajate și acces direct la metrou, City Point oferă conectivitate perfectă.",
+      "image": ""
+    },
+    "contact_email": "contact@citypointmk.ro",
+    "phone": "+40 800 000 000"
+  },
+  "global": {
+    "sb_founded": "1924",
+    "sb_countries": "20+",
+    "sb_continents": "4",
+    "sb_years": "100+"
+  }
+}
