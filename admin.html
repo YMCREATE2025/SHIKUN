@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -241,8 +241,8 @@ body { font-family:'DM Sans',sans-serif; background:#111; color:var(--text); min
     <div class="login-logo">Shikun & Binui</div>
     <div class="login-sub">Admin Panel · Romania</div>
     <input type="password" class="login-input" id="pw-input" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()">
-    <button class="login-btn" onclick="doLogin()">כניסה למערכת</button>
-    <div class="login-error" id="login-error">סיסמה שגויה. נסה שוב.</div>
+    <button class="login-btn" onclick="doLogin()">Login</button>
+    <div class="login-error" id="login-error">Incorrect password. Please try again.</div>
   </div>
 </div>
 
@@ -252,29 +252,29 @@ body { font-family:'DM Sans',sans-serif; background:#111; color:var(--text); min
   <div class="sidebar">
     <div class="sidebar-header">
       <div class="sidebar-logo">S&B Admin</div>
-      <div class="sidebar-sub">ניהול תוכן אתר</div>
+      <div class="sidebar-sub">Website Content Manager</div>
     </div>
     <nav class="sidebar-nav">
-      <div class="nav-section">דפים</div>
-      <div class="nav-item active" onclick="showPage('portal')"><span class="icon">🏠</span>פורטל ראשי</div>
+      <div class="nav-section">PAGES</div>
+      <div class="nav-item active" onclick="showPage('portal')"><span class="icon">🏠</span>Main Portal</div>
       <div class="nav-item" onclick="showPage('new-point')"><span class="icon">🏗️</span>New Point</div>
       <div class="nav-item" onclick="showPage('city-point')"><span class="icon">🏙️</span>City Point</div>
-      <div class="nav-section" style="margin-top:8px;">הגדרות</div>
-      <div class="nav-item" onclick="showPage('settings')"><span class="icon">⚙️</span>GitHub / פרסום</div>
+      <div class="nav-section" style="margin-top:8px;">Settings</div>
+      <div class="nav-item" onclick="showPage('settings')"><span class="icon">⚙️</span>GitHub / Publish</div>
     </nav>
     <div class="sidebar-footer">
-      <button class="logout-btn" onclick="doLogout()">יציאה</button>
+      <button class="logout-btn" onclick="doLogout()">Logout</button>
     </div>
   </div>
 
   <!-- MAIN -->
   <div class="main">
     <div class="topbar">
-      <div class="topbar-title" id="page-title">פורטל ראשי</div>
+      <div class="topbar-title" id="page-title">Main Portal</div>
       <div class="topbar-actions">
         <span class="save-status" id="save-status"></span>
-        <a class="btn-preview" href="https://ymcreate2025.github.io/SHIKUN/" target="_blank">👁 תצוגה מקדימה</a>
-        <button class="btn-save" id="save-btn" onclick="saveContent()">💾 שמור ופרסם</button>
+        <a class="btn-preview" href="https://ymcreate2025.github.io/SHIKUN/" target="_blank">👁 Preview</a>
+        <button class="btn-save" id="save-btn" onclick="saveContent()">💾 Save & Publish</button>
       </div>
     </div>
 
@@ -291,36 +291,36 @@ body { font-family:'DM Sans',sans-serif; background:#111; color:var(--text); min
           </div>
           <div class="card-body">
             <div class="field-group" style="margin-bottom:20px;">
-              <div class="field-label">תמונת הירו <span style="color:var(--text-dim);font-size:11px;">(PNG/JPG/WebP)</span></div>
+              <div class="field-label">Hero Image <span style="color:var(--text-dim);font-size:11px;">(PNG/JPG/WebP)</span></div>
               <div class="img-uploader" id="img-portal-hero" onclick="triggerImgUpload('portal-hero-file')">
                 <img class="img-preview" id="img-portal-hero-preview" style="display:none;">
                 <div class="img-placeholder" id="img-portal-hero-empty">
                   <span class="icon">🖼️</span>
-                  <span>לחץ להעלאת תמונה</span>
-                  <span style="font-size:11px;opacity:0.6;">1920×1080 מומלץ</span>
+                  <span>Click to upload image</span>
+                  <span style="font-size:11px;opacity:0.6;">1920×1080 recommended</span>
                 </div>
                 <div class="img-overlay">
                   <span class="icon">📷</span>
-                  <span>החלף תמונה</span>
+                  <span>Replace Image</span>
                 </div>
                 <input type="file" id="portal-hero-file" class="img-input" accept="image/*" onchange="handleImg(this,'portal-hero','portal.hero.image')">
               </div>
             </div>
             <div class="field-grid">
               <div class="field-group">
-                <label class="field-label">כותרת <span class="lang-tag">RO</span></label>
+                <label class="field-label">Title <span class="lang-tag">RO</span></label>
                 <input class="field-input" data-path="portal.hero.title_ro" placeholder="Construim Excelență...">
               </div>
               <div class="field-group">
-                <label class="field-label">כותרת <span class="lang-tag en">EN</span></label>
+                <label class="field-label">Title <span class="lang-tag en">EN</span></label>
                 <input class="field-input" data-path="portal.hero.title_en" placeholder="Building Excellence...">
               </div>
               <div class="field-group">
-                <label class="field-label">תת-כותרת <span class="lang-tag">RO</span></label>
+                <label class="field-label">Subtitle <span class="lang-tag">RO</span></label>
                 <input class="field-input" data-path="portal.hero.subtitle_ro">
               </div>
               <div class="field-group">
-                <label class="field-label">תת-כותרת <span class="lang-tag en">EN</span></label>
+                <label class="field-label">Subtitle <span class="lang-tag en">EN</span></label>
                 <input class="field-input" data-path="portal.hero.subtitle_en">
               </div>
             </div>
@@ -335,10 +335,10 @@ body { font-family:'DM Sans',sans-serif; background:#111; color:var(--text); min
           </div>
           <div class="card-body">
             <div class="field-grid">
-              <div class="field-group"><label class="field-label">שנת ייסוד</label><input class="field-input" data-path="portal.stats.founded"></div>
-              <div class="field-group"><label class="field-label">מדינות</label><input class="field-input" data-path="portal.stats.countries"></div>
-              <div class="field-group"><label class="field-label">יבשות</label><input class="field-input" data-path="portal.stats.continents"></div>
-              <div class="field-group"><label class="field-label">פרויקטים ברומניה</label><input class="field-input" data-path="portal.stats.romania_projects"></div>
+              <div class="field-group"><label class="field-label">Founded</label><input class="field-input" data-path="portal.stats.founded"></div>
+              <div class="field-group"><label class="field-label">Countries</label><input class="field-input" data-path="portal.stats.countries"></div>
+              <div class="field-group"><label class="field-label">Continents</label><input class="field-input" data-path="portal.stats.continents"></div>
+              <div class="field-group"><label class="field-label">Romania Projects</label><input class="field-input" data-path="portal.stats.romania_projects"></div>
             </div>
           </div>
         </div>
@@ -346,23 +346,23 @@ body { font-family:'DM Sans',sans-serif; background:#111; color:var(--text); min
         <!-- NP CARD -->
         <div class="admin-card">
           <div class="card-header" onclick="toggleCard(this)">
-            <div class="card-title"><span>🏗️</span>כרטיס New Point</div>
+            <div class="card-title"><span>🏗️</span>New Point Card</div>
             <span class="card-toggle">▼</span>
           </div>
           <div class="card-body">
             <div class="field-group" style="margin-bottom:20px;">
-              <div class="field-label">תמונת הכרטיס</div>
+              <div class="field-label">Card Image</div>
               <div class="img-uploader" onclick="triggerImgUpload('portal-np-file')">
                 <img class="img-preview" id="img-portal-np-preview" style="display:none;">
-                <div class="img-placeholder" id="img-portal-np-empty"><span class="icon">🖼️</span><span>לחץ להעלאת תמונה</span></div>
-                <div class="img-overlay"><span class="icon">📷</span><span>החלף תמונה</span></div>
+                <div class="img-placeholder" id="img-portal-np-empty"><span class="icon">🖼️</span><span>Click to upload image</span></div>
+                <div class="img-overlay"><span class="icon">📷</span><span>Replace Image</span></div>
                 <input type="file" id="portal-np-file" class="img-input" accept="image/*" onchange="handleImg(this,'portal-np','portal.np_card.image')">
               </div>
             </div>
             <div class="field-grid">
-              <div class="field-group"><label class="field-label">תיאור <span class="lang-tag">RO</span></label><textarea class="field-textarea" data-path="portal.np_card.desc_ro"></textarea></div>
-              <div class="field-group"><label class="field-label">תיאור <span class="lang-tag en">EN</span></label><textarea class="field-textarea" data-path="portal.np_card.desc_en"></textarea></div>
-              <div class="field-group"><label class="field-label">מחיר מ- (€)</label><input class="field-input" data-path="portal.np_card.price_from"></div>
+              <div class="field-group"><label class="field-label">Description <span class="lang-tag">RO</span></label><textarea class="field-textarea" data-path="portal.np_card.desc_ro"></textarea></div>
+              <div class="field-group"><label class="field-label">Description <span class="lang-tag en">EN</span></label><textarea class="field-textarea" data-path="portal.np_card.desc_en"></textarea></div>
+              <div class="field-group"><label class="field-label">Price from (€)</label><input class="field-input" data-path="portal.np_card.price_from"></div>
             </div>
           </div>
         </div>
@@ -370,23 +370,23 @@ body { font-family:'DM Sans',sans-serif; background:#111; color:var(--text); min
         <!-- CP CARD -->
         <div class="admin-card">
           <div class="card-header" onclick="toggleCard(this)">
-            <div class="card-title"><span>🏙️</span>כרטיס City Point</div>
+            <div class="card-title"><span>🏙️</span>City Point Card</div>
             <span class="card-toggle">▼</span>
           </div>
           <div class="card-body">
             <div class="field-group" style="margin-bottom:20px;">
-              <div class="field-label">תמונת הכרטיס</div>
+              <div class="field-label">Card Image</div>
               <div class="img-uploader" onclick="triggerImgUpload('portal-cp-file')">
                 <img class="img-preview" id="img-portal-cp-preview" style="display:none;">
-                <div class="img-placeholder" id="img-portal-cp-empty"><span class="icon">🖼️</span><span>לחץ להעלאת תמונה</span></div>
-                <div class="img-overlay"><span class="icon">📷</span><span>החלף תמונה</span></div>
+                <div class="img-placeholder" id="img-portal-cp-empty"><span class="icon">🖼️</span><span>Click to upload image</span></div>
+                <div class="img-overlay"><span class="icon">📷</span><span>Replace Image</span></div>
                 <input type="file" id="portal-cp-file" class="img-input" accept="image/*" onchange="handleImg(this,'portal-cp','portal.cp_card.image')">
               </div>
             </div>
             <div class="field-grid">
-              <div class="field-group"><label class="field-label">תיאור <span class="lang-tag">RO</span></label><textarea class="field-textarea" data-path="portal.cp_card.desc_ro"></textarea></div>
-              <div class="field-group"><label class="field-label">תיאור <span class="lang-tag en">EN</span></label><textarea class="field-textarea" data-path="portal.cp_card.desc_en"></textarea></div>
-              <div class="field-group"><label class="field-label">מחיר מ- (€)</label><input class="field-input" data-path="portal.cp_card.price_from"></div>
+              <div class="field-group"><label class="field-label">Description <span class="lang-tag">RO</span></label><textarea class="field-textarea" data-path="portal.cp_card.desc_ro"></textarea></div>
+              <div class="field-group"><label class="field-label">Description <span class="lang-tag en">EN</span></label><textarea class="field-textarea" data-path="portal.cp_card.desc_en"></textarea></div>
+              <div class="field-group"><label class="field-label">Price from (€)</label><input class="field-input" data-path="portal.cp_card.price_from"></div>
             </div>
           </div>
         </div>
@@ -402,17 +402,17 @@ body { font-family:'DM Sans',sans-serif; background:#111; color:var(--text); min
           </div>
           <div class="card-body">
             <div class="field-group" style="margin-bottom:20px;">
-              <div class="field-label">תמונת הירו</div>
+              <div class="field-label">Hero Image</div>
               <div class="img-uploader" onclick="triggerImgUpload('np-hero-file')">
                 <img class="img-preview" id="img-np-hero-preview" style="display:none;">
-                <div class="img-placeholder" id="img-np-hero-empty"><span class="icon">🖼️</span><span>לחץ להעלאת תמונה</span><span style="font-size:11px;opacity:0.6;">1920×1080 מומלץ</span></div>
-                <div class="img-overlay"><span class="icon">📷</span><span>החלף תמונה</span></div>
+                <div class="img-placeholder" id="img-np-hero-empty"><span class="icon">🖼️</span><span>Click to upload image</span><span style="font-size:11px;opacity:0.6;">1920×1080 recommended</span></div>
+                <div class="img-overlay"><span class="icon">📷</span><span>Replace Image</span></div>
                 <input type="file" id="np-hero-file" class="img-input" accept="image/*" onchange="handleImg(this,'np-hero','new_point.hero.image')">
               </div>
             </div>
             <div class="field-grid">
-              <div class="field-group"><label class="field-label">תת-כותרת <span class="lang-tag">RO</span></label><input class="field-input" data-path="new_point.hero.subtitle_ro"></div>
-              <div class="field-group"><label class="field-label">תת-כותרת <span class="lang-tag en">EN</span></label><input class="field-input" data-path="new_point.hero.subtitle_en"></div>
+              <div class="field-group"><label class="field-label">Subtitle <span class="lang-tag">RO</span></label><input class="field-input" data-path="new_point.hero.subtitle_ro"></div>
+              <div class="field-group"><label class="field-label">Subtitle <span class="lang-tag en">EN</span></label><input class="field-input" data-path="new_point.hero.subtitle_en"></div>
             </div>
           </div>
         </div>
@@ -424,73 +424,73 @@ body { font-family:'DM Sans',sans-serif; background:#111; color:var(--text); min
           </div>
           <div class="card-body">
             <div class="field-grid">
-              <div class="field-group"><label class="field-label">טקסט <span class="lang-tag">RO</span></label><textarea class="field-textarea" data-path="new_point.promo.text_ro"></textarea></div>
-              <div class="field-group"><label class="field-label">טקסט <span class="lang-tag en">EN</span></label><textarea class="field-textarea" data-path="new_point.promo.text_en"></textarea></div>
+              <div class="field-group"><label class="field-label">Text <span class="lang-tag">RO</span></label><textarea class="field-textarea" data-path="new_point.promo.text_ro"></textarea></div>
+              <div class="field-group"><label class="field-label">Text <span class="lang-tag en">EN</span></label><textarea class="field-textarea" data-path="new_point.promo.text_en"></textarea></div>
             </div>
           </div>
         </div>
 
         <div class="admin-card">
           <div class="card-header" onclick="toggleCard(this)">
-            <div class="card-title"><span>💰</span>מחירים</div>
+            <div class="card-title"><span>💰</span>Prices</div>
             <span class="card-toggle">▼</span>
           </div>
           <div class="card-body">
             <div class="section-divider">Studio Dublu</div>
             <div class="field-grid">
-              <div class="field-group"><label class="field-label">מחיר (€)</label><input class="field-input" data-path="new_point.prices.studio.price"></div>
-              <div class="field-group"><label class="field-label">גודל <span class="lang-tag">RO</span></label><input class="field-input" data-path="new_point.prices.studio.size_ro"></div>
+              <div class="field-group"><label class="field-label">Price (€)</label><input class="field-input" data-path="new_point.prices.studio.price"></div>
+              <div class="field-group"><label class="field-label">Size <span class="lang-tag">RO</span></label><input class="field-input" data-path="new_point.prices.studio.size_ro"></div>
             </div>
             <div class="section-divider">2 Camere</div>
             <div class="field-grid">
-              <div class="field-group"><label class="field-label">מחיר (€)</label><input class="field-input" data-path="new_point.prices.two_rooms.price"></div>
-              <div class="field-group"><label class="field-label">גודל <span class="lang-tag">RO</span></label><input class="field-input" data-path="new_point.prices.two_rooms.size_ro"></div>
+              <div class="field-group"><label class="field-label">Price (€)</label><input class="field-input" data-path="new_point.prices.two_rooms.price"></div>
+              <div class="field-group"><label class="field-label">Size <span class="lang-tag">RO</span></label><input class="field-input" data-path="new_point.prices.two_rooms.size_ro"></div>
             </div>
             <div class="section-divider">3 Camere</div>
             <div class="field-grid">
-              <div class="field-group"><label class="field-label">מחיר (€)</label><input class="field-input" data-path="new_point.prices.three_rooms.price"></div>
-              <div class="field-group"><label class="field-label">גודל <span class="lang-tag">RO</span></label><input class="field-input" data-path="new_point.prices.three_rooms.size_ro"></div>
+              <div class="field-group"><label class="field-label">Price (€)</label><input class="field-input" data-path="new_point.prices.three_rooms.price"></div>
+              <div class="field-group"><label class="field-label">Size <span class="lang-tag">RO</span></label><input class="field-input" data-path="new_point.prices.three_rooms.size_ro"></div>
             </div>
             <div class="section-divider">Penthouse</div>
             <div class="field-grid">
-              <div class="field-group"><label class="field-label">מחיר (€)</label><input class="field-input" data-path="new_point.prices.penthouse.price"></div>
+              <div class="field-group"><label class="field-label">Price (€)</label><input class="field-input" data-path="new_point.prices.penthouse.price"></div>
             </div>
           </div>
         </div>
 
         <div class="admin-card">
           <div class="card-header" onclick="toggleCard(this)">
-            <div class="card-title"><span>🏢</span>About הפרויקט</div>
+            <div class="card-title"><span>🏢</span>About the Project</div>
             <span class="card-toggle">▼</span>
           </div>
           <div class="card-body">
             <div class="field-group" style="margin-bottom:20px;">
-              <div class="field-label">תמונת הפרויקט</div>
+              <div class="field-label">Project Image</div>
               <div class="img-uploader" onclick="triggerImgUpload('np-about-file')">
                 <img class="img-preview" id="img-np-about-preview" style="display:none;">
-                <div class="img-placeholder" id="img-np-about-empty"><span class="icon">🖼️</span><span>לחץ להעלאת תמונה</span></div>
-                <div class="img-overlay"><span class="icon">📷</span><span>החלף תמונה</span></div>
+                <div class="img-placeholder" id="img-np-about-empty"><span class="icon">🖼️</span><span>Click to upload image</span></div>
+                <div class="img-overlay"><span class="icon">📷</span><span>Replace Image</span></div>
                 <input type="file" id="np-about-file" class="img-input" accept="image/*" onchange="handleImg(this,'np-about','new_point.about.image')">
               </div>
             </div>
             <div class="field-grid">
-              <div class="field-group"><label class="field-label">תיאור 1 <span class="lang-tag">RO</span></label><textarea class="field-textarea" data-path="new_point.about.desc1_ro"></textarea></div>
-              <div class="field-group"><label class="field-label">תיאור 1 <span class="lang-tag en">EN</span></label><textarea class="field-textarea" data-path="new_point.about.desc1_en"></textarea></div>
-              <div class="field-group"><label class="field-label">תיאור 2 <span class="lang-tag">RO</span></label><textarea class="field-textarea" data-path="new_point.about.desc2_ro"></textarea></div>
-              <div class="field-group"><label class="field-label">תיאור 2 <span class="lang-tag en">EN</span></label><textarea class="field-textarea" data-path="new_point.about.desc2_en"></textarea></div>
+              <div class="field-group"><label class="field-label">Description 1 <span class="lang-tag">RO</span></label><textarea class="field-textarea" data-path="new_point.about.desc1_ro"></textarea></div>
+              <div class="field-group"><label class="field-label">Description 1 <span class="lang-tag en">EN</span></label><textarea class="field-textarea" data-path="new_point.about.desc1_en"></textarea></div>
+              <div class="field-group"><label class="field-label">Description 2 <span class="lang-tag">RO</span></label><textarea class="field-textarea" data-path="new_point.about.desc2_ro"></textarea></div>
+              <div class="field-group"><label class="field-label">Description 2 <span class="lang-tag en">EN</span></label><textarea class="field-textarea" data-path="new_point.about.desc2_en"></textarea></div>
             </div>
           </div>
         </div>
 
         <div class="admin-card">
           <div class="card-header" onclick="toggleCard(this)">
-            <div class="card-title"><span>📞</span>פרטי קשר</div>
+            <div class="card-title"><span>📞</span>Contact Details</div>
             <span class="card-toggle">▼</span>
           </div>
           <div class="card-body">
             <div class="field-grid">
-              <div class="field-group"><label class="field-label">אימייל</label><input class="field-input" data-path="new_point.contact_email" type="email"></div>
-              <div class="field-group"><label class="field-label">טלפון</label><input class="field-input" data-path="new_point.phone" type="tel"></div>
+              <div class="field-group"><label class="field-label">Email</label><input class="field-input" data-path="new_point.contact_email" type="email"></div>
+              <div class="field-group"><label class="field-label">Phone</label><input class="field-input" data-path="new_point.phone" type="tel"></div>
             </div>
           </div>
         </div>
@@ -506,17 +506,17 @@ body { font-family:'DM Sans',sans-serif; background:#111; color:var(--text); min
           </div>
           <div class="card-body">
             <div class="field-group" style="margin-bottom:20px;">
-              <div class="field-label">תמונת הירו</div>
+              <div class="field-label">Hero Image</div>
               <div class="img-uploader" onclick="triggerImgUpload('cp-hero-file')">
                 <img class="img-preview" id="img-cp-hero-preview" style="display:none;">
-                <div class="img-placeholder" id="img-cp-hero-empty"><span class="icon">🖼️</span><span>לחץ להעלאת תמונה</span><span style="font-size:11px;opacity:0.6;">1920×1080 מומלץ</span></div>
-                <div class="img-overlay"><span class="icon">📷</span><span>החלף תמונה</span></div>
+                <div class="img-placeholder" id="img-cp-hero-empty"><span class="icon">🖼️</span><span>Click to upload image</span><span style="font-size:11px;opacity:0.6;">1920×1080 recommended</span></div>
+                <div class="img-overlay"><span class="icon">📷</span><span>Replace Image</span></div>
                 <input type="file" id="cp-hero-file" class="img-input" accept="image/*" onchange="handleImg(this,'cp-hero','city_point.hero.image')">
               </div>
             </div>
             <div class="field-grid">
-              <div class="field-group"><label class="field-label">תת-כותרת <span class="lang-tag">RO</span></label><input class="field-input" data-path="city_point.hero.subtitle_ro"></div>
-              <div class="field-group"><label class="field-label">תת-כותרת <span class="lang-tag en">EN</span></label><input class="field-input" data-path="city_point.hero.subtitle_en"></div>
+              <div class="field-group"><label class="field-label">Subtitle <span class="lang-tag">RO</span></label><input class="field-input" data-path="city_point.hero.subtitle_ro"></div>
+              <div class="field-group"><label class="field-label">Subtitle <span class="lang-tag en">EN</span></label><input class="field-input" data-path="city_point.hero.subtitle_en"></div>
             </div>
           </div>
         </div>
@@ -528,62 +528,62 @@ body { font-family:'DM Sans',sans-serif; background:#111; color:var(--text); min
           </div>
           <div class="card-body">
             <div class="field-grid">
-              <div class="field-group"><label class="field-label">טקסט <span class="lang-tag">RO</span></label><textarea class="field-textarea" data-path="city_point.promo.text_ro"></textarea></div>
-              <div class="field-group"><label class="field-label">טקסט <span class="lang-tag en">EN</span></label><textarea class="field-textarea" data-path="city_point.promo.text_en"></textarea></div>
+              <div class="field-group"><label class="field-label">Text <span class="lang-tag">RO</span></label><textarea class="field-textarea" data-path="city_point.promo.text_ro"></textarea></div>
+              <div class="field-group"><label class="field-label">Text <span class="lang-tag en">EN</span></label><textarea class="field-textarea" data-path="city_point.promo.text_en"></textarea></div>
             </div>
           </div>
         </div>
 
         <div class="admin-card">
           <div class="card-header" onclick="toggleCard(this)">
-            <div class="card-title"><span>💰</span>מחירים</div>
+            <div class="card-title"><span>💰</span>Prices</div>
             <span class="card-toggle">▼</span>
           </div>
           <div class="card-body">
             <div class="section-divider">Studio / Studio Dublu</div>
-            <div class="field-grid single"><div class="field-group"><label class="field-label">מחיר (€)</label><input class="field-input" data-path="city_point.prices.studio.price"></div></div>
+            <div class="field-grid single"><div class="field-group"><label class="field-label">Price (€)</label><input class="field-input" data-path="city_point.prices.studio.price"></div></div>
             <div class="section-divider">2 Camere</div>
-            <div class="field-grid single"><div class="field-group"><label class="field-label">מחיר (€)</label><input class="field-input" data-path="city_point.prices.two_rooms.price"></div></div>
+            <div class="field-grid single"><div class="field-group"><label class="field-label">Price (€)</label><input class="field-input" data-path="city_point.prices.two_rooms.price"></div></div>
             <div class="section-divider">3 Camere</div>
-            <div class="field-grid single"><div class="field-group"><label class="field-label">מחיר (€)</label><input class="field-input" data-path="city_point.prices.three_rooms.price"></div></div>
+            <div class="field-grid single"><div class="field-group"><label class="field-label">Price (€)</label><input class="field-input" data-path="city_point.prices.three_rooms.price"></div></div>
             <div class="section-divider">Duplex</div>
-            <div class="field-grid single"><div class="field-group"><label class="field-label">מחיר (€)</label><input class="field-input" data-path="city_point.prices.duplex.price"></div></div>
+            <div class="field-grid single"><div class="field-group"><label class="field-label">Price (€)</label><input class="field-input" data-path="city_point.prices.duplex.price"></div></div>
           </div>
         </div>
 
         <div class="admin-card">
           <div class="card-header" onclick="toggleCard(this)">
-            <div class="card-title"><span>🏢</span>About הפרויקט</div>
+            <div class="card-title"><span>🏢</span>About the Project</div>
             <span class="card-toggle">▼</span>
           </div>
           <div class="card-body">
             <div class="field-group" style="margin-bottom:20px;">
-              <div class="field-label">תמונת הפרויקט</div>
+              <div class="field-label">Project Image</div>
               <div class="img-uploader" onclick="triggerImgUpload('cp-about-file')">
                 <img class="img-preview" id="img-cp-about-preview" style="display:none;">
-                <div class="img-placeholder" id="img-cp-about-empty"><span class="icon">🖼️</span><span>לחץ להעלאת תמונה</span></div>
-                <div class="img-overlay"><span class="icon">📷</span><span>החלף תמונה</span></div>
+                <div class="img-placeholder" id="img-cp-about-empty"><span class="icon">🖼️</span><span>Click to upload image</span></div>
+                <div class="img-overlay"><span class="icon">📷</span><span>Replace Image</span></div>
                 <input type="file" id="cp-about-file" class="img-input" accept="image/*" onchange="handleImg(this,'cp-about','city_point.about.image')">
               </div>
             </div>
             <div class="field-grid">
-              <div class="field-group"><label class="field-label">תיאור 1 <span class="lang-tag">RO</span></label><textarea class="field-textarea" data-path="city_point.about.desc1_ro"></textarea></div>
-              <div class="field-group"><label class="field-label">תיאור 1 <span class="lang-tag en">EN</span></label><textarea class="field-textarea" data-path="city_point.about.desc1_en"></textarea></div>
-              <div class="field-group"><label class="field-label">תיאור 2 <span class="lang-tag">RO</span></label><textarea class="field-textarea" data-path="city_point.about.desc2_ro"></textarea></div>
-              <div class="field-group"><label class="field-label">תיאור 2 <span class="lang-tag en">EN</span></label><textarea class="field-textarea" data-path="city_point.about.desc2_en"></textarea></div>
+              <div class="field-group"><label class="field-label">Description 1 <span class="lang-tag">RO</span></label><textarea class="field-textarea" data-path="city_point.about.desc1_ro"></textarea></div>
+              <div class="field-group"><label class="field-label">Description 1 <span class="lang-tag en">EN</span></label><textarea class="field-textarea" data-path="city_point.about.desc1_en"></textarea></div>
+              <div class="field-group"><label class="field-label">Description 2 <span class="lang-tag">RO</span></label><textarea class="field-textarea" data-path="city_point.about.desc2_ro"></textarea></div>
+              <div class="field-group"><label class="field-label">Description 2 <span class="lang-tag en">EN</span></label><textarea class="field-textarea" data-path="city_point.about.desc2_en"></textarea></div>
             </div>
           </div>
         </div>
 
         <div class="admin-card">
           <div class="card-header" onclick="toggleCard(this)">
-            <div class="card-title"><span>📞</span>פרטי קשר</div>
+            <div class="card-title"><span>📞</span>Contact Details</div>
             <span class="card-toggle">▼</span>
           </div>
           <div class="card-body">
             <div class="field-grid">
-              <div class="field-group"><label class="field-label">אימייל</label><input class="field-input" data-path="city_point.contact_email" type="email"></div>
-              <div class="field-group"><label class="field-label">טלפון</label><input class="field-input" data-path="city_point.phone" type="tel"></div>
+              <div class="field-group"><label class="field-label">Email</label><input class="field-input" data-path="city_point.contact_email" type="email"></div>
+              <div class="field-group"><label class="field-label">Phone</label><input class="field-input" data-path="city_point.phone" type="tel"></div>
             </div>
           </div>
         </div>
@@ -598,23 +598,23 @@ body { font-family:'DM Sans',sans-serif; background:#111; color:var(--text); min
           </div>
           <div class="card-body">
             <p style="font-size:14px;color:var(--text-dim);margin-bottom:20px;line-height:1.7;">
-              כדי לשמור ולפרסם שינויים ישירות לאתר, הזן את פרטי ה-GitHub שלך. הפרטים נשמרים רק בדפדפן שלך.
+              To save and publish changes directly to the website, enter your GitHub credentials. Settings are stored only in your browser.
             </p>
             <div class="settings-form">
               <div class="field-group">
                 <label class="field-label">GitHub Token</label>
                 <input class="field-input" id="gh-token" type="password" placeholder="ghp_xxxxxxxxxxxx">
                 <div class="token-hint">
-                  צור טוקן ב-<a href="https://github.com/settings/tokens/new" target="_blank">github.com/settings/tokens/new</a><br>
-                  סמן scope: <strong style="color:var(--gold);">repo</strong>
+                  Create a token at <a href="https://github.com/settings/tokens/new" target="_blank">github.com/settings/tokens/new</a><br>
+                  Check scope: <strong style="color:var(--gold);">repo</strong>
                 </div>
               </div>
               <div class="field-group">
-                <label class="field-label">שם משתמש GitHub</label>
+                <label class="field-label">GitHub Username</label>
                 <input class="field-input" id="gh-user" placeholder="YMCREATE2025">
               </div>
               <div class="field-group">
-                <label class="field-label">שם ה-Repository</label>
+                <label class="field-label">Repository Name</label>
                 <input class="field-input" id="gh-repo" placeholder="SHIKUN">
               </div>
               <div class="field-group">
@@ -623,30 +623,30 @@ body { font-family:'DM Sans',sans-serif; background:#111; color:var(--text); min
               </div>
             </div>
             <div style="margin-top:20px;display:flex;gap:12px;">
-              <button class="btn-save" onclick="saveGithubSettings()" style="width:auto;">💾 שמור הגדרות</button>
-              <button class="btn-preview" onclick="testGithubConnection()" style="width:auto;">🔌 בדוק חיבור</button>
+              <button class="btn-save" onclick="saveGithubSettings()" style="width:auto;">💾 Save Settings</button>
+              <button class="btn-preview" onclick="testGithubConnection()" style="width:auto;">🔌 Test Connection</button>
             </div>
           </div>
         </div>
 
         <div class="admin-card">
           <div class="card-header" onclick="toggleCard(this)">
-            <div class="card-title"><span>🔒</span>שינוי סיסמה</div>
+            <div class="card-title"><span>🔒</span>Change Password</div>
             <span class="card-toggle">▼</span>
           </div>
           <div class="card-body">
             <div class="field-grid">
               <div class="field-group">
-                <label class="field-label">סיסמה נוכחית</label>
+                <label class="field-label">Current Password</label>
                 <input class="field-input" id="pw-current" type="password">
               </div>
               <div class="field-group">
-                <label class="field-label">סיסמה חדשה</label>
+                <label class="field-label">New Password</label>
                 <input class="field-input" id="pw-new" type="password">
               </div>
             </div>
             <div style="margin-top:16px;">
-              <button class="btn-save" onclick="changePassword()" style="width:auto;">🔒 שנה סיסמה</button>
+              <button class="btn-save" onclick="changePassword()" style="width:auto;">🔒 Change Password</button>
             </div>
           </div>
         </div>
@@ -697,10 +697,10 @@ function doLogout() {
 function changePassword() {
   const cur = document.getElementById('pw-current').value;
   const nw = document.getElementById('pw-new').value;
-  if (cur !== getPassword()) { showToast('סיסמה נוכחית שגויה', 'error'); return; }
-  if (nw.length < 6) { showToast('הסיסמה החדשה קצרה מדי (מינימום 6 תווים)', 'error'); return; }
+  if (cur !== getPassword()) { showToast('Incorrect current password', 'error'); return; }
+  if (nw.length < 6) { showToast('New password too short (minimum 6 characters)', 'error'); return; }
   localStorage.setItem('sb-admin-pw', nw);
-  showToast('✅ הסיסמה שונתה בהצלחה', 'success');
+  showToast('✅ Password changed successfully', 'success');
   document.getElementById('pw-current').value = '';
   document.getElementById('pw-new').value = '';
 }
@@ -709,10 +709,10 @@ function changePassword() {
 //  NAVIGATION
 // ══════════════════════════════════════════
 const pageTitles = {
-  'portal': 'פורטל ראשי',
+  'portal': 'Main Portal',
   'new-point': 'New Point',
   'city-point': 'City Point',
-  'settings': 'הגדרות GitHub'
+  'settings': 'Settings GitHub'
 };
 
 const previewLinks = {
@@ -751,7 +751,7 @@ async function loadContent() {
     content = await r.json();
   } catch(e) {
     content = {};
-    showToast('⚠️ לא ניתן לטעון את התוכן הנוכחי', 'error');
+    showToast('⚠️ Could not load current content', 'error');
   }
   bindFields();
   bindImages();
@@ -778,7 +778,7 @@ function bindFields() {
     el.addEventListener('input', () => {
       setPath(content, el.dataset.path, el.value);
       dirty = true;
-      document.getElementById('save-status').textContent = 'שינויים לא שמורים';
+      document.getElementById('save-status').textContent = 'Unsaved changes';
       document.getElementById('save-status').className = 'save-status';
     });
   });
@@ -817,7 +817,7 @@ function handleImg(input, previewId, contentPath) {
     setPath(content, contentPath, b64);
     showImgPreview(previewId, b64);
     dirty = true;
-    document.getElementById('save-status').textContent = 'שינויים לא שמורים';
+    document.getElementById('save-status').textContent = 'Unsaved changes';
   };
   reader.readAsDataURL(file);
 }
@@ -844,22 +844,22 @@ function saveGithubSettings() {
   localStorage.setItem('gh-user', document.getElementById('gh-user').value);
   localStorage.setItem('gh-repo', document.getElementById('gh-repo').value);
   localStorage.setItem('gh-branch', document.getElementById('gh-branch').value);
-  showToast('✅ הגדרות GitHub נשמרו', 'success');
+  showToast('✅ GitHub settings saved', 'success');
 }
 
 async function testGithubConnection() {
   const token = localStorage.getItem('gh-token');
   const user = localStorage.getItem('gh-user') || 'YMCREATE2025';
   const repo = localStorage.getItem('gh-repo') || 'SHIKUN';
-  if (!token) { showToast('❌ הזן GitHub Token תחילה', 'error'); return; }
+  if (!token) { showToast('❌ Please enter a GitHub Token first', 'error'); return; }
   try {
     const r = await fetch(`https://api.github.com/repos/${user}/${repo}`, {
       headers: { Authorization: 'token ' + token }
     });
-    if (r.ok) showToast('✅ חיבור לגיטהאב תקין!', 'success');
-    else showToast('❌ שגיאת חיבור — בדוק Token והרשאות', 'error');
+    if (r.ok) showToast('✅ GitHub connection successful!', 'success');
+    else showToast('❌ Connection failed — check Token and permissions', 'error');
   } catch(e) {
-    showToast('❌ שגיאת רשת', 'error');
+    showToast('❌ Network error', 'error');
   }
 }
 
@@ -873,14 +873,14 @@ async function saveContent() {
   const branch = localStorage.getItem('gh-branch') || 'main';
 
   if (!token) {
-    showToast('❌ הגדר GitHub Token בהגדרות תחילה', 'error');
+    showToast('❌ Please set your GitHub Token in Settings first', 'error');
     showPage('settings');
     return;
   }
 
   const btn = document.getElementById('save-btn');
-  btn.disabled = true; btn.textContent = '⏳ שומר...';
-  setStatus('saving', 'שומר ומפרסם...');
+  btn.disabled = true; btn.textContent = '⏳ Saving...';
+  setStatus('saving', 'Saving & publishing...');
 
   try {
     // Get current file SHA
@@ -899,7 +899,7 @@ async function saveContent() {
       method: 'PUT',
       headers: { Authorization: 'token ' + token, 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        message: 'Admin: update content ' + new Date().toLocaleString('he-IL'),
+        message: 'Admin: update content ' + new Date().toLocaleString('en-US'),
         content: b64,
         sha: sha,
         branch: branch
@@ -908,17 +908,17 @@ async function saveContent() {
 
     if (putR.ok) {
       dirty = false;
-      setStatus('saved', '✅ פורסם בהצלחה');
-      showToast('✅ התוכן פורסם לאתר בהצלחה!', 'success');
+      setStatus('saved', '✅ Published successfully');
+      showToast('✅ Content published successfully!', 'success');
     } else {
       const err = await putR.json();
       throw new Error(err.message);
     }
   } catch(e) {
-    setStatus('error', '❌ שגיאה בשמירה');
-    showToast('❌ שגיאה: ' + e.message, 'error');
+    setStatus('error', '❌ Save error');
+    showToast('❌ Error: ' + e.message, 'error');
   } finally {
-    btn.disabled = false; btn.innerHTML = '💾 שמור ופרסם';
+    btn.disabled = false; btn.innerHTML = '💾 Save & Publish';
   }
 }
 
