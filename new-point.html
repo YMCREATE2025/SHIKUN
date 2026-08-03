@@ -743,6 +743,64 @@ footer{
   }
 
 </style>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5N5XZMT5GX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5N5XZMT5GX', {
+    page_title: document.title,
+    page_location: window.location.href
+  });
+  // Track CTA button clicks
+  document.addEventListener('click', function(e) {
+    var el = e.target.closest('a, button');
+    if (!el) return;
+    var text = el.innerText.trim().substring(0, 50);
+    var href = el.href || '';
+    if (el.classList.contains('btn-gold') || el.classList.contains('btn-primary') ||
+        el.classList.contains('btn-outline') || el.classList.contains('price-cta') ||
+        el.classList.contains('nav-cta') || el.classList.contains('pf-submit')) {
+      gtag('event', 'cta_click', {
+        event_category: 'engagement',
+        event_label: text,
+        page_path: window.location.pathname
+      });
+    }
+    if (el.classList.contains('project-link') || el.classList.contains('apt-plan-link') || el.classList.contains('ps-card')) {
+      gtag('event', 'project_click', {
+        event_category: 'engagement',
+        event_label: text || href,
+        page_path: window.location.pathname
+      });
+    }
+  });
+  // Track form submissions (popup)
+  document.addEventListener('submit', function(e) {
+    gtag('event', 'form_submit', {
+      event_category: 'lead',
+      event_label: 'offer_request',
+      page_path: window.location.pathname
+    });
+  });
+  // Track popup open
+  var _origOpen = window.openPopup;
+  document.addEventListener('DOMContentLoaded', function() {
+    if (typeof openPopup !== 'undefined') {
+      var orig = openPopup;
+      window.openPopup = function() {
+        gtag('event', 'popup_open', {
+          event_category: 'engagement',
+          event_label: 'offer_form',
+          page_path: window.location.pathname
+        });
+        orig();
+      };
+    }
+  });
+</script>
+
 </head>
 <body>
 
